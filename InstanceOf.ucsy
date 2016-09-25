@@ -1,0 +1,51 @@
+class POne implements IOne
+{
+	
+}
+class PTwo inherits POne implements IOne
+{
+	public PTwo()
+	{
+	}
+}
+class PThree inherits POne
+{
+	public PThree()
+	{
+	}
+}
+interface ParentInterface
+{
+}
+interface IOne inherits ParentInterface
+{
+}
+interface ITwo
+{
+}
+class InstanceOf
+{
+	public static void main(string[]args)
+	{
+		
+		POne one = new PTwo();
+		IOne iOne = one;
+		POne two = one;
+		one = new PThree();
+		iOne = new PThree();
+		//one = iOne;
+		ParentInterface iFace = (ParentInterface)one;
+		if(one instanceof PThree)
+		{
+			Console.println("Yes instanceof POne");
+		}
+		if(iOne instanceof ParentInterface)
+		{
+			Console.println("Yes also instanceof IOne");
+		}
+		if( null instanceof Object == false)
+		{
+			Console.println("Great you are");
+		}
+	}
+}

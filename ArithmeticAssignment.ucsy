@@ -1,0 +1,28 @@
+class ArithmeticAssignment
+{
+	public static void main(string[]args)
+	{
+		char ch = 'A';
+		float f = 30;
+		int integerData = 2100;
+		long longData = 4000;
+		double doubleData = 100.3;
+		
+		f += integerData;
+		Console.print("The value of f is ");
+		Console.println(f);
+		
+		longData *= 3;
+		Console.print("The value of longData is ");
+		Console.println(longData);		
+		
+		integerData %= 3;
+		Console.print("The value of integerData is ");
+		Console.println( integerData );	
+
+		doubleData /= 5;
+		Console.print("The value of doubleData is ");
+		Console.println( doubleData );
+
+	}
+}

@@ -1,0 +1,30 @@
+class String
+{
+	string data;
+	public String(string d)
+	{
+		data =d;
+	}
+	public native int getLength()
+	{
+	}
+	public native char charAt(int index)
+	{
+	}
+	public native string concat(string s)
+	{
+		
+	}
+	public static void main(string[] args)
+	{
+		String s = new String("Hello How are you");
+		Console.println(s.getLength());
+		for(int i=s.getLength()-1;i>=0;i=i-1)
+		{
+			Console.print(s.charAt(i));
+		}
+		string s2 = s.concat("Just example");
+		Console.println(s2);
+		//Console.println("Hello"+"Ah ah");
+	}
+}

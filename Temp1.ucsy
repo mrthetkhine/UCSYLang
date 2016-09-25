@@ -1,0 +1,20 @@
+//import Name.Name.Name;
+class Parent
+{
+}
+class Child inherits Parent
+{
+}
+class Temp1
+{
+	int a;
+	void main()
+	{
+		int a ;
+		 a = a;
+		//char c = (char)34;	
+		Parent p;
+		Child c;
+		c = (Child)p;
+	}
+}

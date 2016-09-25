@@ -1,0 +1,27 @@
+class Human
+{
+	public Human()
+	{
+	}
+	public void talk()
+	{
+		Console.println("Talk");
+	}
+}
+class Child inherits Human
+{
+	public Child()
+	{
+	}
+	public override void talk()
+	{
+		Console.println("Childern talk");
+	}
+	public static void main(string[]args)
+	{
+		Human h= new Human();
+		h.talk();
+		h = new Child();
+		h.talk();
+	}
+}

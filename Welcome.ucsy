@@ -1,0 +1,59 @@
+class Welcome
+{
+	//public functor void F();
+	static int a2a;
+	public static void main(string[]args)
+	{
+		Welcome w;
+		ExceptionChild w3 = (this).a2a;
+		//(a)= "e";
+		try
+		{
+		
+		}
+		
+		//a = 30;
+		catch(ExceptionChild2 e)
+		{	
+		}
+		catch(UnrelatedException e)
+		{
+		}
+		catch(ExceptionChild e)
+		{
+		}
+		catch(Exception e)
+		{
+			int a;
+		}
+		
+		finally
+		{
+			int a2;
+		}
+		a2a = 30;
+		
+	
+		
+	
+	}
+}
+class ExceptionChild inherits Exception
+{
+}
+class ExceptionChild2 inherits ExceptionChild
+{
+
+}
+class UnrelatedException inherits Exception
+{
+}
+/*
+functor void HelloFunctor(int a, string s);
+free class myMo of Welcome
+{
+	void method()
+	{
+	}
+}
+*/

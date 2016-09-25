@@ -1,0 +1,9 @@
+class CompileSaveDemo
+{
+	public static void main(String[]args)
+	{
+		int d = 30;	
+			Console.println("Welcome to UCSY");
+		int daa;
+	}
+}

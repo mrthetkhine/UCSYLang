@@ -1,0 +1,16 @@
+class ReadFile
+{
+	public static void main(string[]args)
+	{
+		Console.print("Enter a file Name ");
+		string fileName = Console.readString();
+		FileReader reader = new FileReader( fileName );
+		string firstLine = reader.readLine();
+
+		while(firstLine != null)
+		{
+			Console.println( firstLine );
+			firstLine = reader.readLine();
+		}
+	}
+}

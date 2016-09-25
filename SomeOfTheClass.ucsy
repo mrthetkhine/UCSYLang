@@ -1,0 +1,16 @@
+class SomeOfTheClass inherits Exception
+{
+	public static void main(string[]args)
+	{
+		//Console.println("Welcome to new Programming Language Exploring the world");
+		int k;
+		do
+		{
+			//int k;
+		}while(k< 10);
+		SomeOfTheClass c,v;
+		throw c;
+
+	}
+
+}

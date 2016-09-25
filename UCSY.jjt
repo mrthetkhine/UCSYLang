@@ -1,0 +1,2444 @@
+
+PARSER_BEGIN(UCSY)
+import java.io.*;
+import java.io.*;
+import javax.swing.*;
+import javax.swing.event.*;
+import javax.swing.tree.*;
+import java.awt.*;
+import java.util.*;
+import javax.swing.text.*;
+public class UCSY
+	{
+	static MutableAttributeSet PLAIN = new SimpleAttributeSet();
+	static JEditorPane compileOutput;
+	boolean syntaxError = false;
+	boolean staticSemanticError = false;
+	int syntaxErrorCount = 0;
+	int staticSemanticErrorCount = 0;
+		public static void main(String[]args)throws Exception
+		{
+			try 
+         	{ 
+         	          
+             UIManager.setLookAndFeel("com.birosoft.liquid.LiquidLookAndFeel");
+            } catch (Exception e) 
+        	{
+          
+         	}
+			UCSY parser;
+			parser = new UCSY(new FileInputStream(args[0]));
+			parser.compile();
+			
+		}
+	}
+PARSER_END(UCSY)
+SKIP:
+{
+	 " "
+	|"\t"
+	|"\r"
+	|"\n"
+	|"\f"
+}
+TOKEN:
+{
+   <BOOLEAN:"boolean">
+ | <CHAR:"char">
+ | <INTEGER:"int">
+ | <FLOAT:"float">
+ | <DOUBLE:"double">
+ | <VOID:"void">
+ | <BYTE:"byte">
+ | <SHORT:"short">
+ | <LONG:"long">
+ | <PUBLIC:"public">
+ | <PRIVATE:"private">
+ | <PROTECTED:"protected">
+ | <INTERNAL:"internal">
+ | <NATIVE: "native">
+ | <STATIC:"static">
+ | <DO:"do">
+ | <IF:"if">
+ | <ELSE:"else">
+ | <WHILE:"while">
+ | <FOR:"for">
+ ///| <FOREACH:"foreach">
+ | <TO:"to">
+ | <NEW: "new">
+ | <NULL: "null">
+ | <RETURN:"return">
+ | <BREAK: "break">
+ | <CONTIUNE : "continue">
+ | <SWITCH:"switch">
+ | <CASE:"case">
+ | <MYDEFAULT:"default">
+ | <STRING: "string">
+ | <TRUE:"true">
+ | <FALSE:"false">
+ | <AND:"and">
+ | <OR:"or">
+ | <Not:"not">
+ | <CLASS:"class">
+ | <TRY:"try">
+ | <CATCH:"catch">
+ | <FINALLY:"finally">
+ | <THROW: "throw">
+ ///|<THROWS: "throws">
+ | <FINAL:"final">
+ | <SINGLETON: "singleton">
+ | <META: "meta">
+ | <DELEGATE: "delegate">
+ | <FUNCTOR:"functor">
+ | <CONFORMS:"conforms">
+ | <REBIND: "rebind">
+ | <REBINDABLE: "rebindable">
+ | <MULTIDISPATCH: "multidispatch">
+ | <OVERRIDE: "override">
+ | <INTERFACE: "interface">
+ | <IMPLEMENTS : "implements">
+ | <ABSTRACT: "abstract">
+ | <ADAPTS :"adapts">
+ | <HANDLES: "handles">
+ | <ALL :"all">
+ | <WITH: "with">
+ | <DECORATE: "decorates">
+ | <AFTER: "after">
+ | <BEFORE: "before">
+ | <INHERITS :"inherits">
+ | <INSTANCEOF: "instanceof">
+ | <PACKAGE: "package">
+ | <IMPORT: "import">
+ | <FREE: "free">
+ | <OF: "of">
+ | <FORWARDS: "forwards">
+ | <MULTI:"multi">
+ | <THIS :"this">
+ | <SUPER: "super">
+ | <EXECUTE:"execute">
+ | <TIMES:"times"> 
+ 
+ | <IDENTIFIER: (["a"-"z"]|["A"-"Z"])(["a"-"z"]|["A"-"Z"]|["0"-"9"]|"_")* > 
+}
+TOKEN:
+{
+	<LEFTPARAN:"(">
+	| <RIGHTPARAN:")">
+	| <GT:">">
+	| <LT:"<">
+	| <GTE:">=">
+	| <LTE: "<=">
+	| <EQUAL: "==">
+	| <NOTEQUAL: "<>">
+	| <PLUS: "+">
+	| <MINUS: "-">
+	| <DIV: "/">
+	| <MOD:"%">
+	| <MUL : "*">
+	| <SEMICOLON: ";">
+	| <DOT: ".">
+	| <COLON: ":">
+	| <ASSIGN:"=">
+	| <PLUSASSIGN:"+=">
+	| <MINUSASSIGN:"-=">
+	| <MODASSIGN: "%=">
+	| <DIVASSIGN: "/=">
+	| <MULASSIGN: "*=">
+	| <COMMA: ",">
+	| <AT: "@">
+	| <LBRACE: "{">
+	| <RBRACE: "}">
+	| <LBRACKET: "[">
+	| <RBRACKET: "]">
+}
+SPECIAL_TOKEN : /* COMMENTS */
+{
+  <SINGLE_LINE_COMMENT: "//" (~["\n","\r"])* ("\n"|"\r"|"\r\n")>
+| <FORMAL_COMMENT: "/**" (~["*"])* "*" ("*" | (~["*","/"] (~["*"])* "*"))* "/">
+| <MULTI_LINE_COMMENT: "/*" (~["*"])* "*" ("*" | (~["*","/"] (~["*"])* "*"))* "/">
+}
+TOKEN:
+{
+	<INTEGERLITERAL:<DECIMAL_LITERAL> ("L")?>
+	|
+	<DECIMAL_LITERAL:["1"-"9"](["0"-"9"])*
+					|"0">
+	
+	|
+	<FLOATLITERAL:
+	  (["0"-"9"])+ "." (["0"-"9"])* (<DECIMAL_EXPONENT>)? (["f","F","d","D"])?
+      | "." (["0"-"9"])+ (<DECIMAL_EXPONENT>)? (["f","F","d","D"])?
+      | (["0"-"9"])+ <DECIMAL_EXPONENT> (["f","F","d","D"])?
+      | (["0"-"9"])+ (<DECIMAL_EXPONENT>)? ["f","F","d","D"]
+    >
+    |
+    
+    < #DECIMAL_EXPONENT: ["e","E"] (["+","-"])? (["0"-"9"])+ >
+	|< CHARLITERAL:
+      "'"
+      (   (~["'","\\","\n","\r"])
+        | ("\\"
+            ( ["n","t","b","r","f","\\","'","\""]
+            | ["0"-"7"] ( ["0"-"7"] )?
+            | ["0"-"3"] ["0"-"7"] ["0"-"7"]
+            )
+          )
+      )
+      "'"
+  >
+
+
+	|<STRINGLITERAL: "\""
+      (   (~["\"","\\","\n","\r"])
+        | ("\\"
+            ( ["n","t","b","r","f","\\","'","\""]
+            | ["0"-"7"] ( ["0"-"7"] )?
+            | ["0"-"3"] ["0"-"7"] ["0"-"7"]
+            )
+          )
+      )*
+      "\"">
+}
+
+JAVACODE
+void compile()#void
+{
+	ASTStart root = Start();
+	ParseTree guiTree = new ParseTree();
+	guiTree.display(root);
+	Debug.parser = this;
+	
+	if(!syntaxError)
+	{
+		
+		TypeAnalysisVisitor collectTypeInfoVisitor = new TypeAnalysisVisitor(this);
+		root.jjtAccept( collectTypeInfoVisitor,root);	
+		TypeCheckVisitor typeCheckVisitor = new TypeCheckVisitor(this);
+		root.jjtAccept( typeCheckVisitor, root );
+		CommonInheritedAttribute.parser = this;
+	}
+	
+	if(successFullyCompiled())
+	{	
+		inform("Congrulation:program compiled successfully");
+		SymbolTable.reset();
+		CodeGenerator.parser = this;
+		CommonInheritedAttribute.parser = this;
+		CodeGenerationVisitor codeGen = new CodeGenerationVisitor(this);
+		root.jjtAccept( codeGen, root );
+	}
+	else
+	{	
+		inform((syntaxErrorCount+ staticSemanticErrorCount) + " errors ");
+	}
+	
+}
+
+JAVACODE
+boolean successFullyCompiled()#void
+{
+	return !syntaxError && !staticSemanticError;
+}
+
+JAVACODE 
+void skipBefore(int kind)#void
+{
+	Token t;
+	while((t = getToken(1)).kind != kind && t.kind!=0)
+  	{
+  	 getNextToken();
+  	//jj_consume_token(t.kind);
+  	//inform("That is skip before");
+  	}
+}
+
+JAVACODE 
+void skipBeforeSet(int []kindArray)#void
+{
+	Token t;
+	boolean exit = false;
+	while(!exit)
+	{
+		t = getToken(1);
+		
+		for(int i=0;i<kindArray.length;i++)
+		{
+			if(t.kind == kindArray[i])
+			{
+				exit = true;
+				return;
+			}
+			if(t.kind==0)
+				return;
+		}
+		getNextToken();
+	}
+}
+
+JAVACODE 
+void skipto(int kind)#void
+
+{
+ 
+  Token t;
+  do
+  {
+    t = getNextToken();
+    //System.out.println ("GOOOO");
+    if(t.kind ==0)
+    	return;
+  } while (t.kind != kind  );
+  
+    
+}
+
+JAVACODE
+void skiptoSet(int arr[])#void
+{
+	Token t;
+	boolean exit = false;
+	while(!exit)
+	{
+		t = getNextToken();
+		for(int i=0;i<arr.length;i++)
+		{
+			if(t.kind == arr[i])
+				return;
+			if(t.kind == 0)
+				return;
+		}
+	}
+}
+
+JAVACODE
+void skiptoOrEndOfLine(int kind)#void
+{
+  Token t;
+  Token original = getToken(0);
+  do
+  {
+    t = getNextToken();
+    if(t.beginLine > original.beginLine)
+    	return;
+    
+  } while (t.kind != kind && t.kind != 0 );
+}
+
+JAVACODE
+void setCompileOutput(JEditorPane compile)#void
+{
+	compileOutput = compile ;
+}
+
+JAVACODE
+void error(String s) #void
+ {
+ 		Token t = getToken(0);
+ 		int line = t.beginLine;
+ 		int col = t.beginColumn;
+ 		syntaxError = true ;
+ 		syntaxErrorCount ++;
+  		if(compileOutput == null)
+        	System.out.println ("Error at line : " + line+" Col: "+col+" "+s);
+        else
+        {
+        	try
+        	{
+        	compileOutput.getDocument().insertString(compileOutput.getDocument().getLength(),"Error at line : " + line+" Col: "+col+" "+s+"\n",PLAIN);
+        	//compileOutput.setText("Error at line : " + line+" Col: "+col+" "+s);
+        	}
+        	catch(Exception e)
+        	{
+        	}
+        
+    	}
+}
+
+JAVACODE 
+void inform(String s)#void
+{
+  	if(compileOutput == null)
+  	{
+  		System.out.println ( s );
+  	}
+  	else
+  	{
+  		
+  		try
+        {
+        	compileOutput.getDocument().insertString(compileOutput.getDocument().getLength(),s+"\n",PLAIN);
+        	//compileOutput.setText("Error at line : " + line+" Col: "+col+" "+s);
+        }
+        catch(Exception e)
+        {
+        }
+  	}
+}
+
+JAVACODE
+void reportSSError(int line,String s)#void
+{
+	staticSemanticError = true;
+	staticSemanticErrorCount ++;
+	if(compileOutput == null)
+  	{
+  		System.out.println ("Error at line "+line+" " +s);
+  	}
+  	else
+  	{
+  		
+  		try
+        {
+        	compileOutput.getDocument().insertString(compileOutput.getDocument().getLength(),"Error at line "+ line+" " +s+"\n",PLAIN);
+        	//compileOutput.setText("Error at line : " + line+" Col: "+col+" "+s);
+        }
+        catch(Exception e)
+        {
+        }
+  	}
+}
+
+JAVACODE
+int getTokenDistance(int kind)#void
+{
+	int length = 0;
+	Token t ;
+	
+	while(((t = getToken(++length)).kind != kind) )
+  	{
+  		///System.out.println ("Token image "+t.image);
+  	 	if(t.kind == 0)
+  	 	{
+  	 		length = 214748364;
+  	 		return length;
+  	 	}
+  		
+  	}
+  	return length;
+}
+
+JAVACODE
+int getTokenDistanceSet(int []kindArray)#void 
+{
+	int length = 0 ;
+	Token t;
+	
+	
+	boolean found = false;
+	while(!found)
+	{
+		t = getToken(++length);
+	
+		for(int i=0;i<kindArray.length;i++)
+		{
+			if(t.kind == kindArray[i])
+				found =true;
+			if(t.kind ==0 )
+				return 214748364;
+		}
+		
+	}
+	return length;
+}
+ASTStart Start():
+{
+	ASTTypeDeclaration typeDecl;
+}
+{
+	try
+	{
+	[ PackageDeclaration() ]
+	( ImportDeclaration() )*
+	
+	
+
+	(typeDecl = TypeDeclaration(){jjtThis.addTypeDeclaration(typeDecl);} ) +
+	}
+	catch(ParseException e)
+	{
+		
+		error(" class,interface,meta class declaration or functor declaration excepted");
+		
+		
+	}
+	{return jjtThis;}
+	<EOF>
+	
+}
+
+void PackageDeclaration():
+{}
+{
+	try
+	{
+	"package" Name() ("."Name())* ";"
+	}
+	catch(ParseException e)
+	{
+		
+		error (" ivalid package declaration");
+		int lookAhead1[] = {IMPORT,CLASS,FINAL,SINGLETON,META,FUNCTOR,INTERFACE,ABSTRACT,FREE};
+		
+		skipBeforeSet(lookAhead1);
+		
+		//Error Revovery
+		label_1:
+    	while (true) {
+      	switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
+      	case IMPORT:
+        	;
+        break;
+      	default:
+        jj_la1[1] = jj_gen;
+        break label_1;
+      	}
+      ImportDeclaration();
+      }
+      label_2:
+      while (true) 
+      {
+        switch ((jj_ntk==-1)?jj_ntk():jj_ntk) 
+        {
+        case CLASS:
+        case FINAL:
+        case SINGLETON:
+        case META:
+        case FUNCTOR:
+        case INTERFACE:
+        case ABSTRACT:
+        case FREE:
+          ;
+          break;
+        default:
+          jj_la1[2] = jj_gen;
+          break label_2;
+        }
+        TypeDeclaration();
+    
+      }
+      jj_consume_token(0);
+	}
+}
+
+void ImportDeclaration():
+{}
+{
+	try
+	{
+	"import" Name() (LOOKAHEAD(2) "."  )*["." "*"] ";"
+	}
+	catch(ParseException e)
+	{
+		
+		error(" invalid import declaration ");
+		
+		int lookAhead2[] = {CLASS,FINAL,SINGLETON,META,FUNCTOR,INTERFACE,ABSTRACT,FREE};
+		skipBeforeSet(lookAhead2);
+		
+		label_2:
+        while (true) {
+        switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
+        case CLASS:
+        case FINAL:
+        case SINGLETON:
+        case META:
+        case FUNCTOR:
+        case INTERFACE:
+        case ABSTRACT:
+        case FREE:
+          ;
+          break;
+        default:
+          jj_la1[2] = jj_gen;
+          break label_2;
+        }
+        TypeDeclaration();
+      }
+      jj_consume_token(0);
+	 }
+	
+}
+
+ASTTypeDeclaration TypeDeclaration():
+{}
+{
+	(
+	jjtThis.typeDeclaration = ClassDeclaration()
+	|
+	jjtThis.typeDeclaration = InterfaceDeclaration()
+	| 
+	jjtThis.typeDeclaration = MetaClassDeclaration()
+	|
+	jjtThis.typeDeclaration = FreeClassDeclaration()
+	|
+	jjtThis.typeDeclaration = FunctorDeclaration() ";"
+	)
+	{return jjtThis;}
+}
+
+ASTClassDeclaration ClassDeclaration():
+{Token t=null;}
+{
+	(
+	try
+	{
+	jjtThis.classHeader = ClassHeader()
+	}
+	catch(ParseException e)
+	{
+		
+		error(" Invalid class header declaration");
+		skipBefore(LBRACE);
+		
+	}
+	jjtThis.classBody = ClassBody()
+	)
+	{
+		return jjtThis;
+	}
+}
+
+ASTClassHeader ClassHeader():
+{Token t = null;}
+{
+			
+	 (
+	 [jjtThis.classModifier = ClassModifier()] "class" jjtThis.t = <IDENTIFIER> {jjtThis.className = jjtThis.t.image;}	
+	 [ jjtThis.inheritsClause = InheritsClause() | jjtThis.adaptsClause = AdaptsClause() ] 
+	 [jjtThis.implementsClause = ImplementsClause()]                                                   
+	 [jjtThis.conformsClause = ConformsClause()]
+	 )
+	 {return jjtThis;}
+	 
+	 
+}
+ASTImplementsClause ImplementsClause():
+{
+ASTIdentifier id;}
+{
+	("implements" id = Identifier(){jjtThis.identifierList.add(id);} (  "," id = Identifier(){jjtThis.identifierList.add(id);}) * )
+	{
+		return jjtThis;
+	}
+}
+ASTIdentifier Identifier():
+{
+	Token t;
+}
+{
+	(jjtThis.t = <IDENTIFIER> )
+	{
+		return jjtThis;
+	}
+}
+ASTConformsClause ConformsClause():
+{
+	ASTIdentifier id; 
+}
+{
+	( "conforms"id =Identifier() {jjtThis.conformsIdentifier.add(id);} ( "," id = Identifier() {jjtThis.conformsIdentifier.add(id);})* )
+	
+	{
+		return jjtThis;
+	}
+}
+ASTInheritsClause InheritsClause():
+{}
+{
+	 ("inherits" jjtThis.identifier = Identifier() )
+	{
+		return jjtThis;
+	}	 
+}
+ASTAdaptsClause AdaptsClause():
+{
+	ASTSignatureToCall sToCall ;
+}
+{	
+	(
+	try
+	{
+	"adapts" jjtThis.identifierInterface = Identifier() "with"  jjtThis.identifierClass = Identifier() sToCall = SignatureToCall(){jjtThis.signatureToCall.add(sToCall);} ( "," sToCall = SignatureToCall() {jjtThis.signatureToCall.add(sToCall);} )*
+	}
+	catch(ParseException e)
+	{
+		
+		error(" malform adapts clause in class declaration");
+	}
+	)
+	{return jjtThis;}
+}
+
+ASTSignatureToCall SignatureToCall():
+{
+}
+{
+	(jjtThis.signature = MethodSignature() "to" jjtThis.methodCall = MethodCall() )
+	{return jjtThis;}
+	
+}
+
+ASTClassModifier ClassModifier():
+{}
+{
+	(
+	"final"  { jjtThis.modifier    |= UCSYClassAttribute.FINAL ;}
+	|
+	"abstract" { jjtThis.modifier  |= UCSYClassAttribute.ABSTRACT;}
+	|
+	"singleton" { jjtThis.modifier |= UCSYClassAttribute.SINGLETON;}
+	)
+	{
+		return jjtThis;
+	}
+	
+}
+
+ASTClassBody ClassBody():
+{ASTMemberDeclaration m;}
+{
+	(
+	"{"
+	( m = MemberDeclaration(){jjtThis.member.add(m);} )	*
+	"}"
+	)
+	{
+		return jjtThis;
+	}
+}
+
+ASTFreeClassDeclaration FreeClassDeclaration():
+{}
+{
+	(
+	try
+	{
+	jjtThis.freeClassHeader = FreeClassHeader()
+	}
+	catch(ParseException e)
+	{
+		error("Invalid free class header declaration");
+		skipBefore(LBRACE);
+	}
+	jjtThis.freeClassBody = FreeClassBody()
+	)
+	{	
+		return jjtThis;
+	}
+}
+
+ASTFreeClassHeader FreeClassHeader():
+{Token f,p;}
+{
+	(
+	"free" "class" f=<IDENTIFIER>{jjtThis.freeClassToken = f;} "of" p=<IDENTIFIER>{jjtThis.parentClassToken = p;}
+	)
+	{
+		return jjtThis;
+	}
+}
+
+ASTFreeClassBody FreeClassBody():
+{
+	ASTMethodDeclaration m;
+}
+{
+	(	
+	"{"
+	( [AccessModifier()]  m = MethodDeclaration() {jjtThis.methodDeclarationList.add(m);})+
+	"}"
+	)
+	{
+		return jjtThis;
+	}
+}
+
+ASTMemberDeclaration MemberDeclaration():
+{}
+{
+	(
+	[jjtThis.accessModifier =  AccessModifier()]
+	
+	(    LOOKAHEAD( (MethodModifier()) * <IDENTIFIER> "(")
+		jjtThis.memberDeclaration = ConstructorDeclaration()
+	|
+		LOOKAHEAD( AbstractMethodDeclaration())
+		jjtThis.memberDeclaration = AbstractMethodDeclaration()
+	|
+		LOOKAHEAD( MethodDeclarationLookAhead())
+		jjtThis.memberDeclaration = MethodDeclaration()
+	
+	|
+		jjtThis.memberDeclaration = FieldDeclaration()
+	 
+	|
+		jjtThis.memberDeclaration = DelegateDeclaration()
+	)
+	)
+	{
+		return jjtThis;
+	}	
+}
+
+ASTFunctorDeclaration FunctorDeclaration():
+{Token t;}
+{
+	(
+	 try
+	 {
+	 "functor" jjtThis.returnType = ReturnType() t=<IDENTIFIER>{jjtThis.t=t;} jjtThis.formalParameters = FormalParameters()
+	 }
+	 catch(ParseException e)
+	 {
+	 	error("malformed functor declaration ");
+	 	skipto(SEMICOLON);
+	 }
+	 )
+	 {
+	 	return jjtThis;
+	 }
+}
+
+
+ASTInterfaceDeclaration InterfaceDeclaration():
+{}
+{
+	(
+	try
+	{
+	jjtThis.interfaceHeader = InterfaceHeader()
+	}
+	catch(ParseException e)
+	{
+		
+		error( " in interface declaration clause");
+		skipBefore(LBRACE);
+	}
+	jjtThis.interfaceBody = InterfaceBody()
+	)
+	{
+		return jjtThis;
+	}
+}
+
+ASTInterfaceHeader InterfaceHeader():
+{Token t, k, j;}
+{
+	(
+	"interface" t =<IDENTIFIER>{jjtThis.t = t;} ["inherits" k=<IDENTIFIER>{jjtThis.interfaceParentName.add(k.image);} ("," j=<IDENTIFIER>{jjtThis.interfaceParentName.add(j.image);})* ]
+	)
+	{
+		return jjtThis;
+	}
+}
+
+ASTInterfaceBody InterfaceBody():
+{
+ASTInterfaceMethodDeclaration d;
+}
+{
+	(
+	"{"	
+		(d = InterfaceMethodDeclaration() {jjtThis.interfaceMethodDeclarationList.add(d);}) *
+	"}"	
+	)
+	{
+		return jjtThis;
+	}
+}
+
+ASTInterfaceMethodDeclaration InterfaceMethodDeclaration():
+{}
+{
+	(
+	try
+	{
+	jjtThis.interfaceMethodHeader = InterfaceMethodHeader() ";"
+	}
+	catch(ParseException e)
+	{
+		Token t = getToken(0);	
+		error(" in interface method header declaration");
+		int lookAhead1[] = {RBRACE};
+		int lookAhead2[] = {BOOLEAN,CHAR,INTEGER,FLOAT,DOUBLE,VOID,BYTE,SHORT,LONG,STRING,AT,IDENTIFIER};
+		int lookAhead3[] = {CLASS,FINAL,SINGLETON,META,FUNCTOR,INTERFACE,FREE,EOF};
+		
+		
+		
+		int d1 = getTokenDistanceSet( lookAhead1 );
+		///System.out.println ("Call d1");
+		int d2 = getTokenDistanceSet( lookAhead2 );
+		///System.out.println ("D1 "+d1+" d2 "+d2+" d3 ");
+		int d3 = getTokenDistanceSet( lookAhead3 );
+		//System.out.println ("Going Goingeee");
+		
+		
+		
+		if(d1< d2)
+		{
+			///System.out.println ("Go lookAhead1 2");
+			skipBeforeSet( lookAhead1 );
+			return null;
+			
+		}
+		else if(d2 < d3 )
+		{
+			///System.out.println ("Case 3");
+			skipBeforeSet( lookAhead2 );
+			label_11:
+    		while (true) {
+      		InterfaceMethodDeclaration();
+      		switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
+      		case BOOLEAN:
+      		case CHAR:
+      		case INTEGER:
+     		case FLOAT:
+      		case DOUBLE:
+      		case VOID:
+      		case BYTE:
+      		case SHORT:
+      		case LONG:
+      		case STRING:
+      		case IDENTIFIER:
+      		case AT:
+        	;
+        	break;
+      		default:
+        	jj_la1[21] = jj_gen;
+        	break label_11;
+      		}//switch
+      
+      	 }//while
+      	}
+      	 else
+      	 {
+      	 	skipBeforeSet( lookAhead3 );
+      	 	label_2:
+      		while (true) {
+        	switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
+        	case CLASS:
+        	case FINAL:
+        	case SINGLETON:
+        	case META:
+        	case FUNCTOR:
+        	case INTERFACE:
+        	case ABSTRACT:
+        	case FREE:
+          	;
+          	break;
+        	default:
+          	jj_la1[2] = jj_gen;
+          	break label_2;
+        	}
+        TypeDeclaration();
+      }
+      jj_consume_token(0);	 
+	}
+	}
+	)
+	{return jjtThis;}
+}
+
+ASTMetaClassDeclaration MetaClassDeclaration():
+{}
+{
+	(
+	try
+	{
+		jjtThis.metaClassHeader = MetaClassHeader()
+	}
+	catch(ParseException e)
+	{
+		
+		error(" invalid meta class header declaration");
+		skipBefore(LBRACE);
+	}
+	jjtThis.metaClassBody = MetaClassBody()
+	)
+	{
+		return jjtThis;
+	}
+}
+
+ASTInterfaceMethodHeader InterfaceMethodHeader():
+{
+	Token t;
+}
+{
+	(
+	jjtThis.returnType = ReturnType() t=<IDENTIFIER>{jjtThis.t = t;} jjtThis.formalParameters = FormalParameters() 
+	)
+	{
+		return jjtThis;
+	}
+}
+
+ASTAbstractMethodDeclaration AbstractMethodDeclaration():
+{
+	Token t;
+}
+{
+	(
+	try
+	{
+	"abstract"{ jjtThis.modifier = UCSYClassAttribute.ABSTRACT;} jjtThis.returnType = ReturnType() t=<IDENTIFIER>{jjtThis.t=t;} jjtThis.formalParameters = FormalParameters() ";"
+	}
+	catch(ParseException e)
+	{
+		error(" invalid abstract method declaration");
+		skiptoOrEndOfLine(SEMICOLON);
+	}
+	)
+	{
+		return jjtThis;
+	}
+}
+
+ASTMetaClassHeader MetaClassHeader():
+{Token t,k;}
+{
+	(
+	"meta" "class" t = <IDENTIFIER>{jjtThis.t=t;} [ "inherits" jjtThis.parent=<IDENTIFIER>] "default" k=<IDENTIFIER>{jjtThis.defaultClassName=k.image;}
+	)
+	{
+		return jjtThis;
+	}
+}
+
+ASTMetaClassBody MetaClassBody():
+{
+	ASTAbstractConstructor ac;
+	ASTInterfaceMethodDeclaration in;
+}
+{
+	(
+	"{"
+	
+		(	
+			
+			ac = AbstractConstructor(){jjtThis.abstractConstructorList.add(ac);}
+			|
+			
+			in = InterfaceMethodDeclaration() {jjtThis.interfaceMethodDeclarationList.add(in);}
+			
+			
+		) +
+	
+		
+	"}"	
+	)
+	{
+		return jjtThis;
+	}
+	
+}
+
+ASTAbstractConstructor AbstractConstructor():
+{
+}
+{	
+	(
+	try
+	{
+	jjtThis.t= "new" jjtThis.formalParameters = FormalParameters() ";"
+	}
+	catch(ParseException e)
+	{
+		
+		error( " invalid abstract constructor");
+		//throw e;
+		
+		int lookAhead1[] = {RBRACE};
+		int lookAhead2[] = {NEW,BOOLEAN,CHAR,INTEGER,FLOAT,DOUBLE,VOID,BYTE,SHORT,LONG,STRING,AT,IDENTIFIER};
+		
+		int d1 = getTokenDistanceSet( lookAhead1 ); 
+		int d2 = getTokenDistanceSet( lookAhead2 );	
+		
+		if(d1<d2)
+		{
+			skipBeforeSet(lookAhead1);
+			
+		}
+		else
+		{	skipBeforeSet(lookAhead2);
+		}
+	}
+	)
+	{
+		return jjtThis;
+	}
+}
+void MethodDeclarationLookAhead()#void:
+{}
+{
+	( MethodModifier()) * ReturnType() <IDENTIFIER> "("
+}
+
+void FunctorDeclarationLookAhead()#void:
+{}
+{
+	 "functor" ReturnType() <IDENTIFIER> "("
+}
+
+ASTAccessModifier AccessModifier():
+{
+}
+{
+	(
+	"public"     {jjtThis.modifier |= UCSYClassAttribute.PUBLIC;}
+	|
+	"private"    {jjtThis.modifier |= UCSYClassAttribute.PRIVATE;}
+	|
+	"protected"  {jjtThis.modifier |= UCSYClassAttribute.PROTECTED;}
+	|
+	"internal"   {jjtThis.modifier |= UCSYClassAttribute.INTERNAL;}
+	)
+	{
+		return jjtThis;
+	}
+}
+
+ASTMethodModifier MethodModifier():
+{}
+{
+	 
+	(
+	 "static"	   {jjtThis.modifier |= UCSYClassAttribute.STATIC;}
+	| "override"   {jjtThis.modifier |= UCSYClassAttribute.OVERRIDE;}
+	| "final"	   {jjtThis.modifier |= UCSYClassAttribute.FINAL;}
+	| "abstract"   {jjtThis.modifier |= UCSYClassAttribute.ABSTRACT;}	
+	| "multi"      {jjtThis.modifier |= UCSYClassAttribute.MULTI;}
+	| "rebindable" {jjtThis.modifier |= UCSYClassAttribute.REBINDABLE;}
+	| "native"     {jjtThis.modifier |= UCSYClassAttribute.NATIVE;}
+	)
+	{
+		return jjtThis;
+	}
+}
+ASTFieldModifier FieldModifier():
+{}
+{
+	(
+	"static" {jjtThis.fieldModifier |= UCSYClassAttribute.STATIC;}
+	|
+	 "final" {jjtThis.fieldModifier |= UCSYClassAttribute.FINAL; }	
+	 )
+	 {
+	 	return jjtThis;
+	 }
+}
+ASTConstructorDeclaration ConstructorDeclaration():
+{
+	Token t = null;
+	ASTStatement stat;
+}
+{
+	(
+	try
+	{
+		
+	[jjtThis.methodModifier = MethodModifier()] t=<IDENTIFIER>{jjtThis.t= t;} jjtThis.formalParameters = FormalParameters()
+	}
+	catch(ParseException e)
+	{
+		error("Ivalid constructor header declaration");
+		
+		skipBefore(LBRACE);
+	}
+	"{"
+		(
+		LOOKAHEAD( (("this"|"super") Arguments() ))
+		
+		(jjtThis.explicitConstructorCall = ExplicitConstructorCall()
+		(stat= Statement(){jjtThis.statementList.add(stat);} ) *
+		)
+		|
+		(stat= Statement(){jjtThis.statementList.add(stat);} ) *
+		)
+	"}"
+	)
+	{
+		return jjtThis;
+	}
+}
+
+ASTExplicitConstructorCall ExplicitConstructorCall():
+{
+}
+{
+	(
+	("this" {jjtThis.thisCall = true;}| "super"{jjtThis.superCall= true;} ) jjtThis.arguments = Arguments() ";"
+	)
+	{
+		return jjtThis;
+	}
+}
+
+ASTFieldDeclaration FieldDeclaration():
+{}
+{
+	(
+	try
+	{
+		LOOKAHEAD( FunctorDeclarationLookAhead()) jjtThis.functorDeclaration = FunctorDeclaration() ";"
+	|
+		jjtThis.normalFieldDeclaration = NormalFieldDeclaration()	
+	}
+	catch(ParseException e)
+	{
+		error("Incorrect field or functor declaration");
+		skiptoOrEndOfLine( SEMICOLON );
+	}
+	)
+	{
+		return jjtThis;
+	}
+		
+}
+
+ASTNormalFieldDeclaration NormalFieldDeclaration():
+{
+ASTFieldModifier m;
+ASTVariableDeclarator varDecl;
+}
+{
+	( (m =FieldModifier(){jjtThis.fieldModifier.add(m);}) * jjtThis.type = Type() varDecl = VariableDeclarator() {jjtThis.variableDeclarator.add(varDecl);}("," varDecl = VariableDeclarator() {jjtThis.variableDeclarator.add(varDecl);}) * ";" )
+	{return jjtThis;}
+}
+
+ASTDelegateDeclaration DelegateDeclaration():
+{}
+{
+	(
+	
+	try
+	{
+	 "delegate" jjtThis.type = Type() jjtThis.t = <IDENTIFIER> 
+	( 
+	  		jjtThis.delegateClause = HandleAllClause()
+	  		
+		|   
+			jjtThis.delegateClause = ForwardsClause()
+	 	|   
+	 		jjtThis.delegateClause = DecoratesClause()
+	
+	)
+	";"
+	}
+	catch(ParseException e)
+	{
+		error("incorrect delegat declaration");
+		skiptoOrEndOfLine(SEMICOLON);
+		
+	}			
+	)
+	{
+		return jjtThis;
+	}
+}
+
+ASTHandleAllClause HandleAllClause():
+{}
+{
+	"handles" "all"
+	{
+		return jjtThis;
+	}
+}
+
+ASTForwardsClause ForwardsClause():
+{
+	ASTSignatureToCall sToCall;
+}
+{
+	(
+	"forwards" sToCall = SignatureToCall(){jjtThis.signatureToCallList.add( sToCall );} ( "," sToCall = SignatureToCall(){jjtThis.signatureToCallList.add( sToCall );} )* 
+	)
+	{
+		return jjtThis;
+	}
+}
+
+ASTDecoratesClause DecoratesClause():
+{
+	ASTBeforeCallOrAfterCall bOrACall;
+}
+{
+	(
+	"decorates"  bOrACall = BeforeCallOrAfterCall(){jjtThis.beforeCallOrAfterCallList.add( bOrACall );} ( "," bOrACall = BeforeCallOrAfterCall(){jjtThis.beforeCallOrAfterCallList.add( bOrACall );})* 
+	)
+	{
+		return jjtThis;
+	}
+}
+
+ASTBeforeCallOrAfterCall BeforeCallOrAfterCall():
+{
+}
+{
+	(
+	LOOKAHEAD(MethodSignature() "before")
+	jjtThis.beforeOrAfter = BeforeCall()
+	|
+	jjtThis.beforeOrAfter = AfterCall()
+	)
+	{
+		return jjtThis;
+	}
+}
+ASTAfterCall AfterCall():
+{
+}
+{
+	jjtThis.methodSignature = MethodSignature()	"after" jjtThis.methodCall = MethodCall()
+	{
+		return jjtThis;
+	}
+}
+
+ASTBeforeCall BeforeCall():
+{}
+{
+	jjtThis.methodSignature = MethodSignature()
+	
+	"before" jjtThis.methodCall = MethodCall()
+	{
+		return jjtThis;
+	}
+}
+
+ASTMethodSignature MethodSignature():
+{}
+{
+	(
+	try
+	{
+	 jjtThis.t = <IDENTIFIER> jjtThis.formalParameters = FormalParameters() 
+	}
+	catch(ParseException e)
+	{
+		error(" invalid method signature");
+	}
+	)
+	{
+		return jjtThis;
+	}
+}
+
+ASTMethodCall MethodCall():
+{}
+{
+	(
+	try
+	{
+	jjtThis.t = <IDENTIFIER> jjtThis.arguments = Arguments() 
+	}
+	catch(ParseException e)
+	{
+		error("Invalid method call");
+		skiptoOrEndOfLine(RIGHTPARAN);
+	}
+	)
+	{
+		return jjtThis;
+	}
+}
+
+ASTVariableDeclarator VariableDeclarator():
+{}
+{
+	(
+	jjtThis.variableDeclaratorId = VariableDeclaratorId() ["=" jjtThis.variableInitializer = VariableInitializer() ]
+	)
+	{
+		return jjtThis;
+	}
+}
+
+ASTVariableDeclaratorId VariableDeclaratorId():
+{
+Token t = null;
+}
+{
+	(
+	t = <IDENTIFIER> {jjtThis.t = t;}
+	)
+	{
+		return jjtThis;
+	}
+}
+
+ASTVariableInitializer VariableInitializer():
+{}
+{
+	(
+	try
+	{
+		jjtThis.expression = ArrayInitializer()
+	|
+		jjtThis.expression = Expression()
+	}
+	catch(ParseException e)
+	{
+		error("incorrect variable intializer");
+	}
+	)
+	{
+		return jjtThis;
+	}
+}
+
+ASTArrayInitializer ArrayInitializer():
+{}
+{
+	(
+	try
+	{
+	"{" VariableInitializer() ("," VariableInitializer() ) * "}"
+	}
+	catch(ParseException e)
+	{
+		error("incorrect array intializer");
+	}
+	)
+	{	
+		return jjtThis;
+	}
+}
+
+ASTMethodDeclaration MethodDeclaration():
+{}
+{
+	(
+	 jjtThis.methodHeader = MethodHeader() jjtThis.block = Block()
+	)
+	{
+		return jjtThis;
+	}
+	
+}
+
+ASTMethodHeader MethodHeader():
+{
+Token t=null;
+ASTMethodModifier m;
+}
+{
+	(
+	try
+	{
+	( m = MethodModifier(){jjtThis.modifierList.add(m);} )* jjtThis.returnType = ReturnType() jjtThis.t = <IDENTIFIER> jjtThis.formalParameters = FormalParameters()
+	}
+	catch(ParseException e)
+	{
+		error(" incorrect method header declaration");
+		skiptoOrEndOfLine(RIGHTPARAN);
+	}
+	)
+	{
+		return jjtThis;
+	}
+}
+
+ASTFormalParameters FormalParameters():
+{
+	ASTFormalParameter par;
+}
+{
+	(
+	try
+	{
+	"(" [ par = FormalParameter() {jjtThis.formalParameterList.add( par );} (","par = FormalParameter(){jjtThis.formalParameterList.add( par );} )* ]")"
+	}
+	catch(ParseException e)
+	{
+		error(" invalid formal parameter declaration");
+	}
+	)
+	{
+		return jjtThis;
+	}
+}
+ASTFormalParameter FormalParameter():
+{}
+{
+	(
+	jjtThis.mainType = Type() [":" jjtThis.subType = Type() ] jjtThis.variableDeclaratorId = VariableDeclaratorId() 
+	)
+	{
+		return jjtThis;
+	}
+}
+
+ASTReturnType ReturnType():
+{}
+{
+	(
+		jjtThis.voidType = VoidType()
+	|
+		jjtThis.type = Type()
+	)
+	{
+		return jjtThis;
+	}
+}
+
+ASTVoidType VoidType():
+{}
+{
+	(
+
+	"void"
+	)
+	{
+		return jjtThis;
+	}
+}
+
+ASTType Type():
+{}
+{
+	(
+	LOOKAHEAD(ReferenceType())
+	jjtThis.referenceType =	ReferenceType()
+	|
+	jjtThis.primitiveType =	PrimitiveType()
+	)
+	{
+		return jjtThis;
+	}
+		
+}
+
+ASTPrimitiveType PrimitiveType():
+{}
+{
+	(
+		jjtThis.t = "boolean" {jjtThis.primitiveType = BOOLEAN;}
+	|
+		jjtThis.t ="char"    {jjtThis.primitiveType = CHAR ;}
+	|
+		jjtThis.t ="byte"    {jjtThis.primitiveType = BYTE ;}
+	| 
+		jjtThis.t ="short"   {jjtThis.primitiveType = SHORT;}
+	|
+		jjtThis.t ="int"     {jjtThis.primitiveType = INTEGER; }
+	| 
+		jjtThis.t ="long"    {jjtThis.primitiveType = LONG;}
+	|
+		jjtThis.t ="float"   {jjtThis.primitiveType = FLOAT;}
+	|	
+		jjtThis.t ="double"  {jjtThis.primitiveType = DOUBLE;}
+	| 
+		jjtThis.t ="string"  {jjtThis.primitiveType = STRING;}
+	)
+	{
+		return jjtThis;
+	}
+		
+}
+
+ASTReferenceType ReferenceType():
+{}
+{
+	(
+		jjtThis.metaInstanceType = MetaInstanceType()
+	|
+	LOOKAHEAD(ArrayType())
+		jjtThis.arrayType = ArrayType()
+	|
+		jjtThis.classType = ClassType()
+	)
+	{
+		return jjtThis;
+	}
+}
+ASTMetaInstanceType MetaInstanceType():
+{Token t;}
+{
+	("@" t = <IDENTIFIER>{jjtThis.t= t;})
+	{
+		return jjtThis;
+	}
+}
+ASTClassType ClassType():
+{Token t = null;}
+{
+	(
+	t  = <IDENTIFIER> { jjtThis.t = t;}
+	)
+	{
+		return jjtThis;
+	}
+	
+}
+
+ASTArrayType ArrayType():
+{}
+{
+	(
+		jjtThis.primitiveType = PrimitiveType() ("[" "]" {jjtThis.dimensions ++;}) +
+	|
+		jjtThis.classType = ClassType() ("[" "]" {jjtThis.dimensions++;}) +
+	)
+	{
+		return jjtThis;
+	}
+}
+
+
+ASTExpression Expression():
+{}
+{
+	(
+	 jjtThis.exp = ConditionalOrExpression() 
+	)
+	{
+		return jjtThis;
+	}
+}
+
+ParentExpression ConditionalOrExpression()#void:
+{
+ParentExpression opOne,opTwo,node;
+
+}
+{
+	node = ConditionalAndExpression() ( "or" opTwo = ConditionalAndExpression() {jjtThis.opOne = node;jjtThis.opTwo =opTwo;node= jjtThis;}#OrNode(2))*
+	{return node;}
+}
+
+ParentExpression ConditionalAndExpression()#void:
+{
+ParentExpression opOne,opTwo,node;
+}
+{
+	node = EqualityExpression() ("and" opTwo = EqualityExpression() {jjtThis.opOne=node;jjtThis.opTwo = opTwo;node = jjtThis;}#AndNode (2) )*
+	{return node;}
+}
+
+ParentExpression EqualityExpression()#void:
+{
+ParentExpression opOne,opTwo,node;
+}
+{
+	
+	node = InstanceOfExpression() 
+	(
+		  "==" opTwo = InstanceOfExpression() {jjtThis.opOne = node;jjtThis.opTwo = opTwo;node= jjtThis;} #EqualNode(2)
+		|
+		  "!="	opTwo = InstanceOfExpression() {jjtThis.opOne = node;jjtThis.opTwo=opTwo;node= jjtThis;}#NotEqualNode(2) 
+			 
+	)*
+	
+	{return node;}
+}
+
+ParentExpression InstanceOfExpression()#void:
+{
+ParentExpression opOne,node;
+ASTType type;
+
+ParentExpression rel,instanceExpressionNode;
+}
+{
+	
+	(
+	LOOKAHEAD(RelationalExpression() "instanceof") 
+	opOne = RelationalExpression() "instanceof" type = Type()   {jjtThis.opOne = opOne;jjtThis.type=type; node=jjtThis;}#InstanceOfExpression(2)
+	|
+	 node =RelationalExpression()
+	 )
+	 {return node;}
+	
+	
+}
+
+
+ParentExpression RelationalExpression()#void:
+{
+ParentExpression opOne,opTwo,node;
+}
+{
+	
+	node = AdditiveExpression() 
+	(
+	   ">" opTwo = AdditiveExpression() {jjtThis.opOne = node;jjtThis.opTwo = opTwo; node=jjtThis;}#GTNode(2)
+	 |
+	   ">=" opTwo =AdditiveExpression() {jjtThis.opOne = node;jjtThis.opTwo = opTwo; node=jjtThis;}#GTEqualNode(2)
+	 |
+	   "<" opTwo = AdditiveExpression() {jjtThis.opOne = node;jjtThis.opTwo = opTwo; node=jjtThis;}#LTNode(2)
+	 |
+	   "<=" opTwo = AdditiveExpression() {jjtThis.opOne = node;jjtThis.opTwo = opTwo; node=jjtThis;}#LTEqualNode(2)
+		
+	)*
+	{return node;}
+}
+
+ParentExpression AdditiveExpression()#void:
+{
+ParentExpression opOne,opTwo,node;
+}
+{
+	node = MultiplicativeExpression()
+	(
+	      "+" opTwo = MultiplicativeExpression(){jjtThis.opOne = node;jjtThis.opTwo = opTwo;node = jjtThis;} #PlusNode(2)
+		|
+		  "-" opTwo = MultiplicativeExpression(){jjtThis.opOne = node;jjtThis.opTwo = opTwo;node = jjtThis;} #SubtractNode(2)
+	)*
+	{return node;}
+}
+
+ParentExpression MultiplicativeExpression()#void:
+{
+ParentExpression opOne,opTwo,node;
+}
+{
+	
+	node = UnaryExpression()
+	( 
+	
+		  "*" opTwo = UnaryExpression() {jjtThis.opOne = node;jjtThis.opTwo = opTwo;node = jjtThis;}#MultiplyNode(2) 
+		| 
+		  "/" opTwo = UnaryExpression() {jjtThis.opOne = node;jjtThis.opTwo = opTwo;node = jjtThis;}#DivsionNode(2) 
+		| 
+		  "%" opTwo = UnaryExpression() {jjtThis.opOne = node;jjtThis.opTwo = opTwo;node = jjtThis;}#ModulusNode(2) 
+	
+	) *
+	{return node;}
+	
+}
+
+ParentExpression UnaryExpression() #void:
+{
+	ParentExpression opOne,node;
+	ParentExpression unaryNotCast;
+}
+{
+	
+	(
+	(
+			"+" node = UnaryExpression(){jjtThis.opOne= node;} #UnaryPlusNode(1)
+		|
+			"-" node = UnaryExpression()  {jjtThis.opOne = node;}#UnaryMinusNode(1)
+	)
+	|
+		node = UnaryExpressionNotCast()
+	)
+		{return node;}
+	
+	
+}
+
+ParentExpression UnaryExpressionNotCast()#void:
+{
+	ParentExpression opOne;
+	ParentExpression primaryExpression;
+	ParentExpression node;
+}
+{
+	(
+		"not" node = UnaryExpression(){jjtThis.opOne = node;node=jjtThis;} #NotNode(1)
+	|
+		LOOKAHEAD(CastLookAhead())
+		node = CastExpression(){jjtThis.opOne = node;node=jjtThis;} #CastNode(1)
+	|
+	    node = PrimaryExpression()
+	 )
+	{return node;}
+}
+
+void CastLookAhead()#void:
+{}
+{
+	LOOKAHEAD(2)
+	"(" PrimitiveType()
+	|
+	  LOOKAHEAD("(" Name() "[")
+	"(" Name() "[" "]"
+	|
+	"(" Name() ")" 
+}
+ParentExpression CastExpression():
+{
+
+}
+{
+	(
+	 LOOKAHEAD("(" PrimitiveType())
+  "(" jjtThis.type =Type() ")" jjtThis.expression = UnaryExpression()
+|
+  "(" jjtThis.type = Type() ")" jjtThis.expression = UnaryExpressionNotCast() 
+  )
+  {return jjtThis;}
+}
+
+ASTPrimaryExpression PrimaryExpression():
+{
+
+}
+{
+	(
+	PrimaryPrefix() ( LOOKAHEAD(2) PrimarySuffix() #PrimarySuffix(2))*
+	)
+	{
+		return jjtThis;
+	}
+ 
+}
+void PrimaryPrefix()#void:
+{ASTName name ;Token t;}
+{
+LOOKAHEAD(Name()) name =Name() {jjtThis.name = name;} #NamePrimaryPrefix(1)
+|
+  Literal() #LiteralPrimaryPrefix
+|
+  LOOKAHEAD( "this" )
+  
+  t = "this" {jjtThis.t = t;}#ThisPrimaryPrefix
+|
+  t="super"  {jjtThis.t = t;}#SuperPrimaryPrefix
+|
+  "(" Expression() ")"     #ParenthesePrimaryPrefix(1)
+|
+  AllocationExpression() #AllocationPrimaryPrefix(1)
+
+ 
+}
+
+void PrimarySuffix()#void:
+{Token t;}
+{
+  "[" Expression() "]" #ArrayExpressionPrimarySuffix(1)
+|
+  "." t = <IDENTIFIER> {jjtThis.t = t;}#SuffixDotIdentifierNode
+|
+  Arguments()      #ArgumentsSuffix   
+}
+
+ASTName Name():
+{Token t;}
+{
+	(
+	t = <IDENTIFIER>{jjtThis.t = t;jjtThis.nameList.add(t.image);} (LOOKAHEAD(2) "." t=<IDENTIFIER>{jjtThis.nameList.add(t.image);}) * 
+	)
+	{
+	return jjtThis;
+	}
+	
+}
+
+void Literal()#void:
+{Token t = null;}
+{
+     t = <INTEGERLITERAL> {jjtThis.t = t;}#IntegerLiteral
+     |
+     t = <FLOATLITERAL>  {jjtThis.t = t;} #FloatLiteral
+     |
+     t = <CHARLITERAL>   {jjtThis.t = t;} #CharLiteral
+     |
+     t = <STRINGLITERAL> {jjtThis.t = t;} #StringLiteral
+     
+     |
+     t = <DOUBLELITERAL>  {jjtThis.t = t;}#DoubleLiteral
+     |
+     t = <LONGLITERAL>  {jjtThis.t = t;} #LongLiteral
+     |
+     
+       t="true"          {jjtThis.typeName="t";jjtThis.value=true;jjtThis.t = t;}#BooleanLiteral
+     |
+       t="false"         {jjtThis.typeName="t";jjtThis.value=false;jjtThis.t = t;}#BooleanLiteral
+     |
+       t="null"         {jjtThis.t= t;}#NullLiteral
+       
+}
+
+ASTAllocationExpression AllocationExpression():
+{}
+{
+     "new"
+     (
+          LOOKAHEAD(InstanceAllocation())jjtThis.allocationNode = InstanceAllocation()
+         |
+          jjtThis.allocationNode  =ArrayAllocation()
+     )
+     {
+     	return jjtThis;
+     }
+}
+
+ASTArrayAllocation ArrayAllocation():
+{}
+{
+	(
+        jjtThis.arrayAllocationNode = InstanceArrayAllocation()
+      |
+         jjtThis.arrayAllocationNode = PrimitiveArrayAllocation()
+    )
+    {
+    	return jjtThis;
+   	}
+         
+}
+
+ASTInstanceArrayAllocation InstanceArrayAllocation():
+{}
+{
+     (
+     jjtThis.name = Name() jjtThis.dimensionParameter= DimensionParameter()
+     )
+     {
+     return jjtThis;
+     }
+}
+
+ASTDimensionParameter DimensionParameter():
+{
+ASTExpression exp ;
+}
+{
+    (
+    ( LOOKAHEAD(2)"[" exp = Expression() "]"{jjtThis.expressionList.add(exp);} )+
+    )
+    {
+    return jjtThis;
+    }
+}
+
+ASTPrimitiveArrayAllocation PrimitiveArrayAllocation():
+{}
+{
+	(
+    jjtThis.primitiveType = PrimitiveType() jjtThis.dimensionParameter = DimensionParameter()
+    )
+    {
+    	return jjtThis;
+    }
+}
+
+ASTInstanceAllocation InstanceAllocation():
+{}
+{
+	(
+     jjtThis.name = Name()   jjtThis.arguments = Arguments() 
+    )
+    {
+    	return jjtThis;
+    }
+}
+
+ASTArguments Arguments():
+{}
+{
+	
+  "(" [ jjtThis.argumentsList = ArgumentsList() ]  ")"
+  {
+  	return jjtThis;
+  }
+}
+
+ASTArgumentsList ArgumentsList():
+{ASTExpression e;}
+{
+	(
+    e =Expression() {jjtThis.expressionList.add(e);}( "," e=Expression(){jjtThis.expressionList.add(e);} )*
+    )
+    {
+    	return jjtThis;
+    }
+}
+
+
+ASTStatement Statement():
+{}
+{
+		(
+		LOOKAHEAD(LabelStatement())
+		jjtThis.pStatement = LabelStatement()
+		|
+		LOOKAHEAD(AssignmentStatementLookAhead())
+		try
+		{
+       	
+    	 jjtThis.pStatement = AssignmentStatement() ";"
+    	}
+    	catch(ParseException e)
+    	{
+    		error("incorrect assignement statment");
+    		skiptoOrEndOfLine(SEMICOLON);
+    	}
+      |
+      	LOOKAHEAD(LocalVariableDeclaration())
+    	try
+    	{
+    	//jjtThis.localVariableDeclaration
+    	jjtThis.pStatement = LocalVariableDeclaration() ";"
+    	}
+    	catch(ParseException e)
+    	{
+    		error("invalid local variable declaration");
+    		skiptoOrEndOfLine(SEMICOLON);
+ 	   	}
+      |	
+    	LOOKAHEAD(PrimaryExpression())
+    	try
+    	{
+    	  jjtThis.pStatement = MethodCallStatement() ";"
+    	}
+    	catch(ParseException e)
+    	{
+    		error("incorrect method call statement");
+    		skiptoOrEndOfLine(SEMICOLON);
+    	}
+   
+    |
+    	jjtThis.pStatement = Block()
+    |
+    	jjtThis.pStatement = EmptyStatement()
+    
+    |
+    	try
+    	{
+    	jjtThis.pStatement = SwitchStatement()
+    	}
+    	catch(ParseException e)
+    	{
+    		error("incorrect switch statement");
+    	}
+    |
+    	try
+    	{
+    	jjtThis.pStatement = IfStatement()
+    	}
+    	catch(ParseException e)
+    	{
+    		error("incorrect if statement");
+    	}
+    |
+    	jjtThis.pStatement = WhileStatement()
+    |
+    	jjtThis.pStatement = DoStatement()
+    |
+    	jjtThis.pStatement = ForStatement()
+    |
+    	jjtThis.pStatement = ReturnStatement()
+    |
+    	jjtThis.pStatement = ContinueStatement()
+    |
+    	jjtThis.pStatement = TryStatement()
+    | 
+    	jjtThis.pStatement = ThrowStatement()
+    |
+    	jjtThis.pStatement = RebindStatement()
+    |
+    	 jjtThis.pStatement = BreakStatement()
+    |   
+    	jjtThis.pStatement  = ExecuteTimesStatement()
+    )
+    {
+    	return jjtThis;
+    }
+}
+ASTLabelStatement LabelStatement():
+{}
+{
+	<IDENTIFIER> ":" jjtThis.block = Block()
+	{
+		return jjtThis;
+	}
+}
+ASTBreakStatement BreakStatement():
+{}
+{
+	jjtThis.t = "break" [ jjtThis.label = <IDENTIFIER>] ";"
+	{
+		return jjtThis;
+	}
+}
+ASTExecuteTimesStatement ExecuteTimesStatement():
+{}
+{
+	jjtThis.t = "execute" jjtThis.expression =Expression() "times" jjtThis.statementBody = Statement() 
+	{
+		return jjtThis;
+	}
+}
+ASTMethodCallStatement MethodCallStatement():
+{}
+{
+	
+	 jjtThis.primaryExpression = PrimaryExpression()
+	{
+		return jjtThis;
+	}
+}
+ASTAssignmentStatement AssignmentStatement():
+{}
+{	(
+	jjtThis.primaryExpression = PrimaryExpression() jjtThis.assignmentOperator = AssignmentOperator() jjtThis.expression = Expression() 
+	)
+	{
+		return jjtThis;
+	}
+}
+
+//Only used for LookAhead in Statemnt
+
+void AssignmentStatementLookAhead()#void:
+{}
+{
+	PrimaryExpression() AssignmentOperator()
+}
+ASTAssignmentOperator AssignmentOperator():
+{}
+{
+	(
+		"="  {jjtThis.operator= UCSYOperator.ASSIGNMENT;}
+	|
+		"+=" {jjtThis.operator= UCSYOperator.PLUS_ASSIGN;}
+	|
+		"-=" {jjtThis.operator= UCSYOperator.MINUS_ASSIGN;}
+	|
+		"*=" {jjtThis.operator= UCSYOperator.MULT_ASSIGN;}
+	|
+		"/=" {jjtThis.operator= UCSYOperator.DIV_ASSIGN;}
+	|
+		"%=" {jjtThis.operator= UCSYOperator.MOD_ASSIGN;}
+	)
+	{
+		return jjtThis;
+	}
+}
+ASTBlock Block():
+{
+	ASTStatement s;
+}
+{
+	(
+	"{"
+		( s = Statement() {jjtThis.statementList.add(s);}) *
+	"}"
+	)
+	{
+		return jjtThis;
+	}
+}
+ASTEmptyStatement EmptyStatement():
+{}
+{
+	";"
+	{
+		return jjtThis;
+	}
+}
+
+ASTSwitchStatement SwitchStatement():
+{
+	ASTCaseStatement cs;
+}
+{
+	(
+	"switch" "(" jjtThis.expression = Expression() ")"	
+	"{"
+		(cs = CaseStatement() {jjtThis.caseStatementList.add(cs);})+
+		
+		
+		[jjtThis.defaultStatement = DefaultStatement()]
+	"}"
+	)
+	{
+		return jjtThis;
+	}
+}
+
+ASTCaseStatement CaseStatement():
+{
+	ASTStatement s;
+}
+{
+	(
+	try
+	{
+	jjtThis.t ="case" jjtThis.caseExpression = CaseExpression() ":"
+		( s =Statement(){jjtThis.statementList.add(s);} )+	
+	///"break"";"
+	}
+	catch(ParseException e)
+	{
+		error("incorrect case statement");
+		int set[] = {CASE,DEFAULT};
+		skipBeforeSet(set);
+	}
+	)
+	{
+		return jjtThis;
+	}
+}
+
+ASTCaseExpression CaseExpression():
+{Token t = null;}
+{
+	(
+		 t=<INTEGERLITERAL>{jjtThis.t = t;}  #IntegerLiteral
+	|
+		t=<CHARLITERAL>  {jjtThis.t = t;}#CharLiteral
+	|
+		t= <IDENTIFIER>{jjtThis.t = t;}  #CaseIdentifier
+	)
+	{
+		return jjtThis;
+	}
+}
+ASTDefaultStatement DefaultStatement():
+{
+	ASTStatement s ;
+}
+{
+	(
+	try
+	{
+	"default" ":" 
+		( s =Statement() {jjtThis.statementList.add(s);})+
+	}
+	catch(ParseException e)
+	{
+		error("in default statement");
+	}
+	)
+	{
+		return jjtThis;
+	}
+}
+
+ASTIfStatement IfStatement():
+{}
+{
+	(
+	"if" "(" jjtThis.expression = Expression() ")" jjtThis.thenPartStatement = Statement() 
+	[LOOKAHEAD(1) "else" jjtThis.elsePartStatement = Statement()]
+	)
+	{
+		return jjtThis;
+	}
+}
+
+ASTWhileStatement WhileStatement():
+{}
+{
+	(
+	try
+	{
+	"while" "(" jjtThis.expression = Expression() ")" jjtThis.statement = Statement()
+	}
+	catch(ParseException e)
+	{
+		error("invalid use of while statement");
+	}
+	)
+	{
+		return jjtThis;
+	}
+	
+}
+
+ASTDoStatement DoStatement():
+{}
+{
+	(
+	try
+	{
+	"do" jjtThis.statement = Statement() "while" "(" jjtThis.expression = Expression() ")" ";"
+	}
+	catch(ParseException e)
+	{
+		error("incorrect do statement");
+	}
+	)
+	{
+		return jjtThis;
+	}	
+}
+
+ASTForStatement ForStatement():
+{}
+{
+	(
+	try
+	{
+	jjtThis.t="for" "(" jjtThis.forInitializer = ForInitializer() ";" jjtThis.forExpression = ForExpression()  ";" jjtThis.forUpdator = ForUpdator() ")"
+	}
+	catch(ParseException e)
+	{
+		error("incorrect for header");
+		skiptoOrEndOfLine(RIGHTPARAN);
+	}
+	jjtThis.statement = Statement()
+	)
+	{
+		return jjtThis;
+	}
+}
+ASTForInitializer ForInitializer():
+{}
+{
+	(
+	try
+	{
+	[ jjtThis.forInit = ForInit() ]
+	}
+	catch(ParseException e)
+	{
+		error("invalid for intitalizing expression");
+		skipBefore(SEMICOLON);
+	}
+	)
+	{
+		return jjtThis;
+	}
+}
+ASTForExpression ForExpression():
+{}
+{
+	(
+	try
+	{
+	[ jjtThis.expression = Expression() ]
+	}
+	catch(ParseException e)
+	{
+		error("invalid for test expression");
+		skipBefore(SEMICOLON);
+	}
+	)
+	{
+		return jjtThis;
+	}
+}
+ASTForUpdator ForUpdator():
+{}
+{
+	(
+	try
+	{
+	[ jjtThis.forUpdate = ForUpdate() ]
+	}
+	catch(ParseException e)
+	{
+		error("invalid for update staement");
+		skipBefore(RIGHTPARAN);
+	}
+	)
+	{
+		return jjtThis;
+	}
+}
+ASTForInit ForInit():
+{}
+{
+	
+	jjtThis.localVariableDeclaration = LocalVariableDeclaration()
+	{
+		return jjtThis;
+	}
+}
+
+ASTLocalVariableDeclaration LocalVariableDeclaration():
+{
+	ASTVariableDeclarator varDecl;
+}
+{
+	(
+	 jjtThis.type = Type() varDecl = VariableDeclarator(){jjtThis.variableDeclaratorList.add(varDecl);} ( "," varDecl = VariableDeclarator() {jjtThis.variableDeclaratorList.add(varDecl);})* 
+	 )
+	 {
+	 	return jjtThis;
+	 }
+}
+
+ASTForUpdate ForUpdate():
+{}
+{
+	jjtThis.assignmentStatement= AssignmentStatement()
+	{
+		return jjtThis;
+	}
+}
+
+ASTReturnStatement ReturnStatement():
+{}
+{
+	(
+	try
+	{
+	jjtThis.t = "return" [jjtThis.expression = Expression()] ";"
+	}
+	catch(ParseException e )
+	{
+		error("invalid return statement");
+		skiptoOrEndOfLine(SEMICOLON);
+	}
+	)
+	{
+		return jjtThis;
+	}
+}
+ASTContinueStatement ContinueStatement():
+{}
+{
+	"continue" ";"
+	{	
+		return jjtThis;
+	}
+}
+ASTTryStatement TryStatement():
+{
+	ASTCatchStatement cs;
+}
+{
+	(
+	"try"
+		jjtThis.block = Block()
+	(cs = CatchStatement(){jjtThis.catchStatementList.add(cs);})*
+	[ "finally" jjtThis.finallyBlock = Block() ]
+	)
+	{
+		return jjtThis;
+	}
+	
+}
+ASTCatchStatement CatchStatement():
+{
+}
+{
+	("catch" jjtThis.formalParameters = FormalParameters() jjtThis.block = Block() )
+	{
+		return jjtThis;
+	}
+}
+ASTThrowStatement ThrowStatement():
+{}
+{
+	(
+	try
+	{
+	"throw" jjtThis.expression = Expression() ";"
+	}
+	catch(ParseException e)
+	{
+		error("invalid throw satement");
+		skiptoOrEndOfLine(SEMICOLON);
+	}
+	)
+	{
+		return jjtThis;
+	}
+}
+ASTRebindStatement RebindStatement():
+{}
+{
+
+	"rebind" jjtThis.destinationExpression = Name() "with" jjtThis.rebindMethodNameToken = <IDENTIFIER> "of" jjtThis.rebindClassToken = <IDENTIFIER> ";"
+	{
+		return jjtThis;
+	}
+}

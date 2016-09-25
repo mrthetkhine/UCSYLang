@@ -1,0 +1,10 @@
+class Exception
+{
+	public Exception()
+	{
+	}
+	public string getMessage()
+	{
+		return "Exception Thrown";
+	}
+}

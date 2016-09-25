@@ -1,0 +1,61 @@
+abstract class Parent implements MyInterface3
+{
+}
+abstract class Parent2 inherits Parent
+{
+	private abstract int method()
+	{
+	}
+	
+	
+}
+class Exicting inherits Parent2//inherits MyInterface//Serializable conforms MyMetaClassOne
+{
+	int data, dataTwo;
+	char myCharData;
+	override int method()
+	{
+	}
+	public override void methodOne()
+	{
+	}
+	void forMethod(int a , char aAa)
+	{
+		//{
+		//int data = t instanceof Human;
+		
+		//}
+		boolean b = false;
+		//int f = 3 + 3.3;
+		b += b and false;
+		int i;
+		//i += 2.3;
+		//char a ;
+		//char b;
+		//c= true +"Wlecome to UCSY" + 3;
+		//c = this.new Human();
+		//c = method;
+		Exicting data;
+		MyInterface inter;
+		//inter = data;
+		ChildInterface child ;
+		ChildThree three;
+		inter = three;
+		Parent p;
+		p = data;
+	}
+}
+interface MyInterface 
+{
+	void methodOne();
+//	int methodOne();
+
+}
+interface ChildInterface inherits MyInterface3
+{
+	void methodThree();
+}
+interface ChildThree inherits ChildInterface
+{
+	void someMethod();
+}

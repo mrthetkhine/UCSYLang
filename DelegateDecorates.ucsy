@@ -1,0 +1,36 @@
+
+ class AClass 
+{
+	abstract void add(int a);
+	//{
+	//}
+}
+
+class ParentClass 
+{
+	void addParent(int a)
+	{
+	}
+}
+class LinkedList inherits ParentClass
+{
+	public override void add(int a)
+	{
+	}
+	public void add2(int k)
+	{}
+}
+	
+class DelegateDecorate
+{
+	//delegate LinkedList c forwards insert(int k) to add2(k);
+
+	void add(int a)
+	{
+	}
+	delegate LinkedList l decorates addParent(int a) after modifiedAdd(a);
+	void modifiedAdd2(int a)
+	{
+	}
+
+}

@@ -1,0 +1,6 @@
+class MessageBox
+{
+	public static native void show(string s)
+	{
+	}
+}

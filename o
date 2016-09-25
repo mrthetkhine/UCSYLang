@@ -1,0 +1,39 @@
+class Parent
+{	
+	protected void anotherOne()
+	{
+	}
+}
+/*
+interface Ok
+{
+	void inter();
+}
+*/
+class Demo inherits Parent //implements Ok
+{	
+	static int a;
+	static native void how()
+	{
+	}
+	static Demo()
+	{
+		a += 20;
+	}	
+	public void hello()
+	{
+		//anotherOne();
+		//inter();
+		Ok o ;
+		//inter();	
+		Demo.how();
+		//2.3();
+		char c ='A';
+		float f = 3.4;
+		double d = f;
+		string s = "That is  string";
+		boolean t = false;
+		int i = 0;
+	}
+	
+}

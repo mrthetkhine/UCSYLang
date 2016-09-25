@@ -1,0 +1,28 @@
+class ClassOne
+{
+	protected static  int data;
+	static int privateData;
+}
+class ClassMiddle //inherits ClassOne
+{
+	public static int privateDataOfClassMiddle;
+	public static ClassOne one;
+
+	int intMethod()	
+	{
+	}
+}
+class ClassTwo inherits ClassOne
+{
+	protected static int data;
+	public static void main(string[]args)
+	{
+		ClassOne.data = 30;
+		//ClassOne.privateData = 200;
+		ClassTwo.data = 300;
+		//privateDataOfClassMiddle = 30;
+		ClassMiddle.one.data = 30;
+		boolean b;
+		b = ClassTwo.intMethod();	
+	}
+}

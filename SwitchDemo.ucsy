@@ -1,0 +1,25 @@
+class SwitchDemo
+{
+	public static void main(string[]args)
+	{
+		int a = 4;
+		switch(a)
+		{
+			case 1:
+				Console.println("A is one");
+			break;
+			case 2:
+				Console.println("A is two");
+			break;
+			case 3:
+				Console.println("A is three");
+			break;
+			case 4:
+				Console.println("A is four");
+			break;
+			default:
+				Console.println("Not above all ");
+		}
+		Console.println("End of switch");
+	}
+}

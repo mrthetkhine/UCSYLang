@@ -1,0 +1,22 @@
+class ShortArray
+{
+	public static void main(string[]args)
+	{
+		int a = 3;
+		long f = 3;
+		byte[] sArray = new byte[5];
+		Console.println("Construction ok");
+		//for(int i=0;i<5;i+=1)
+		//{
+		//	sArray[i] = (byte)((i+1)*10);	
+		//}
+		//Console.println("Setting Done");
+		//for(int i=0;i<5;i+=1)
+		//{
+		//	Console.println(sArray[i]);
+		//}
+		
+		byte b = (byte)300;
+		Console.println(b);
+	}
+}

@@ -1,0 +1,67 @@
+class MyException inherits Exception
+{
+	public MyException()
+	{
+	}
+	public void methodOfException()
+	{
+		Console.println("You are using a method of MyException");
+	}
+}
+class MyException2 inherits Exception
+{
+	public MyException2()
+	{
+		
+	}
+	
+}
+class ExceptionDemo
+{
+	public static void method(int a)
+	{
+		Console.println("Fine at this time");
+		throw new Exception();
+		if( a %2 !=0)
+		{
+			throw new MyException();
+		}
+		else
+		{
+			throw new MyException2();
+		}
+	}
+	public static void main(string[]args)
+	{
+		try
+		{
+			Console.println("Ok going to throw Exceptoin");
+			//throw new MyException2();
+			try
+			{
+				method(2);
+			}
+			catch(Exception e)
+			{
+				Console.println("Caught at inner level, rethrowing ");
+				throw e;
+			}
+			Console.println("Never going to see this statement");
+		}
+		catch(MyException e)
+		{	
+			Console.println("Exception is handled");	
+			e.methodOfException();
+		}	
+		catch(MyException2 e)
+		{
+			Console.println("MyException 2 is handled");
+		}
+		catch(Exception e)
+		{
+			Console.println(e.getMessage());
+			Console.println("I could catch All thing");
+		}
+		
+	}
+}

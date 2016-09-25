@@ -1,0 +1,34 @@
+class ConsoleOutput
+{
+	public native static void println(string s)
+	{
+	}
+	public native static void println(long l)
+	{
+	}
+	public native static void println(int i)
+	{
+	}
+	public native static void println(double d)
+	{
+	}
+	public native static void println(float f)
+	{
+	}
+	public native static void println(boolean b)
+	{
+	}
+	public native static void println(char c)
+	{
+	}
+	public static void anotherMethod(string s)
+	{
+		println("Ok from anotherMethod\nHow could you do that");
+		println(s);
+	}
+	public static void main(string[]m)
+	{
+		println("Welcome to UCSY");
+		anotherMethod("Ha Ha");
+	}
+}

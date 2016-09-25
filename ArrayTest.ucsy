@@ -1,0 +1,65 @@
+class TestClass
+{
+	int data;
+	public TestClass(int data)
+	{
+		this.data = data;
+	}
+	public void method()
+	{
+		Console.print("It seems everything is Ok ");
+		Console.println(data);
+	}
+	
+}
+class ArrayTest
+{
+	static int [][]arr;// = new int[3][4];
+	public static void main(string[]args)
+	{
+		/*
+		arr = new int[10][15];
+		int b = arr[0][5] ;
+		arr[0][2] = 40;
+		boolean []booleanArray = new boolean[3];
+		booleanArray[0] = false;
+		*/
+		/*
+		float []arr = new float[5];
+		arr[0] = 200;
+		*/
+		/*
+		TestClass[] arr = new TestClass[5];
+		for(int i=0;i<5;i+=1)
+		{
+			arr[i] = new TestClass(i);
+		}
+		for(int i=0;i<5;i+=1)
+		{
+			arr[i].method();
+		}
+		*/
+		int [][]twoDimension = new int[6][4];
+		Console.println("Ok");
+		int counter =0;
+		for(int i=0;i<3;i+=1)
+		{
+			for(int j=0;j<4;j+=1)
+			{
+				twoDimension[i][j] = counter;
+				counter +=1;
+			}
+		}
+		for(int i=0;i<3;i+=1)
+		{
+			for(int j=0;j<16;j+=1)
+			{
+				Console.print(i);
+				Console.print(" ");
+				Console.print(j);
+				Console.print(" ");
+				Console.println(twoDimension[i][j] );
+			}
+		}
+	}
+}

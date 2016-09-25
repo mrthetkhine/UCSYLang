@@ -1,0 +1,19 @@
+Start Date:
+October 12 2008
+Version : Version 5
+
+October 21 2008
+Syntax Checking and Error Recovery is completed
+IDE is also completed.
+
+November 11 2008
+CollectTypeInfoVisitor is completed;
+TypeCheckVisitor    is started .
+
+December 25 2008
+TypeCheckVisitor is completed.
+
+CodeGenerationVisitor is started..
+
+Janauary 1 2009
+UnifiedVirtualMachine is started.....

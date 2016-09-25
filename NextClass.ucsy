@@ -1,0 +1,10 @@
+abstract class NextClass
+{
+	abstract void method();		
+}
+class ChildClass inherits NextClass
+{
+	public override void method()
+	{
+	}
+}

@@ -1,0 +1,21 @@
+class TCPServerSocket
+{
+	Object nativeSocket;
+	int portNo;
+	public TCPServerSocket(int portNo)
+	{
+		this.portNo = portNo;
+		initialize();	
+	}
+	private native void initialize()
+	{
+	}
+	public native TCPClientSocket getConnection()
+	{
+	}
+	public static void main(string[]args)	
+	{
+		TCPServerSocket serverSocket = new TCPServerSocket(5043);
+	}
+	
+}

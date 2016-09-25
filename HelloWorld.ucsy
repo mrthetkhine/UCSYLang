@@ -1,0 +1,14 @@
+class HelloWorld
+{
+	public static void main(string[]args)
+	{
+		//Comment
+		int a = 2;
+	
+		execute 3 times
+		{
+			Console.println("Dear Sir ,Thank You");
+		}
+	
+	}
+}

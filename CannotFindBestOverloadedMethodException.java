@@ -1,0 +1,3 @@
+class CannotFindBestOverloadedMethodException extends Exception
+{
+}

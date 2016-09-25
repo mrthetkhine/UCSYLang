@@ -1,0 +1,26 @@
+class Father
+{
+	Father()
+	{	
+	}
+	static void fatherMehod()	
+	{
+	}
+	public void parentMethod()
+	{
+		
+	}
+	public void normalMethod()	
+	{
+	}
+}
+class Child inherits Father
+{
+	public override void  parentMethod()
+	{
+	}
+	void childMethod()
+	{
+
+	}
+}

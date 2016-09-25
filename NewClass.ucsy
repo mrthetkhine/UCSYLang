@@ -1,0 +1,49 @@
+class MotherRoot
+{
+	char c;
+}
+class ParentClass inherits MotherRoot 
+{
+	int parentData;
+}
+interface MyInter
+{
+}
+class NewClass inherits ParentClass implements MyInter
+{
+	float data;
+	static NewClass myClass;
+	public static void main(string[]args)
+	{
+		//Console.Println("Welcome to UCSY");
+		//boolean b = false + NewClass.myClass.parentData and NewClass.myClass.c + myClass.data;
+		//Object[][] k =null;
+		//ParentClass p = new Object();//new NewClass();
+		//label:
+		{
+			//new Human();
+			int[][] a;
+			int [] b;
+			a[0][1] = b[0];
+			NewClass[][] newClass ;
+			//newClass[0][1] =new Object();
+			Object o = newClass[0][1];
+			//main(3,3);
+			do
+			{
+				break;
+				while(true)
+				{
+					break lableOne;
+				}
+				break labelTwo;
+			}while(b[0] > 2.3);
+			//break someWhere;
+			switch( 3)
+			{
+				case 3:
+				break;
+			}
+		}
+	}
+}

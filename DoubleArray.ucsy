@@ -1,0 +1,15 @@
+class DoubleArray
+{
+	public static void main(string[]argsa)
+	{
+		double[] d = new double[3];
+		for(int i=0;i<3;i+=1)
+		{	
+			d[i] = 2.3 * (i+1);
+		}
+		for(int i=0;i<3;i+=1)
+		{
+			Console.println(d[i]);
+		}
+	}
+}

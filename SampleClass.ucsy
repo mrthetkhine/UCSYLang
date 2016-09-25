@@ -1,0 +1,28 @@
+class SampleClass inherits MyAbstract implements InterTwo,InterThree
+{
+	public static void main(string[]args)
+	{
+		InterThree i ;//= new Inter();	
+		SampleClass c ;
+		//SampleClass c =new Inter();
+		i = c;
+		//c = i;
+		Parent c2 = new SampleClass();
+		
+	}	
+}
+ class Parent
+{
+}
+abstract class MyAbstract  inherits Parent
+{
+}
+interface Inter
+{
+}
+interface InterTwo inherits Inter
+{
+}
+interface InterThree
+{
+}

@@ -1,0 +1,75 @@
+class Console
+{
+	public native static void println(short s)
+	{
+		
+	}
+	public native static void println(byte b)
+	{
+	}
+	public native static void println(int i)
+	{
+	}
+	public native static void println(boolean b)
+	{
+	}
+	public native static void println(char c)
+	{
+	}
+	public native static void println(string s)
+	{
+	}
+	public native static void println(long l)
+	{
+	}
+	public native static void println(float f)
+	{
+	}
+	public native static void println(double d)
+	{
+	}
+	public native static void println()
+	{
+	}
+	//*********************************************************************
+	public native static void print(int i)
+	{
+	}
+	public native static void print(boolean b)
+	{
+	}
+	public native static void print(char c)
+	{
+	}
+	public native static void print(string s)
+	{
+	}
+	public native static void print(long l)
+	{
+	}
+	public native static void print(float f)
+	{
+	}
+	public native static void print(double d)
+	{
+	}
+	public native static int readInt()
+	{
+	}
+	public native static float readFloat()
+	{
+	}
+	public native static char readChar()
+	{
+	}
+	public native static long readLong()
+	{
+	}
+	public native static double readDouble()
+	{
+	}
+	public native static string readString()
+	{
+	}
+	
+}

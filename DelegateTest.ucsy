@@ -1,0 +1,64 @@
+class Stack
+{
+	void push(int a)
+	{
+	}
+	public int pop()
+	{
+	}
+	public void show()
+	{
+	}
+}
+class DelegateTest
+{	
+	int show;
+	public  void insert()
+	{
+	}
+/*	void insert()
+	{	
+	}
+*/
+	void pop()
+	{
+	}
+	void display()
+	{
+	}
+	int insert3;
+//	delegate Stack s handles all;
+	//int s;
+	//delegate List l forwards insertOne(int a) to add(a), insert(int k) to delete();
+	delegate Stack s decorates push(int a) after w();
+	//Window w;
+	void insertOne(int b)
+	{
+	}
+	void insert(int i)
+	{
+	}
+
+	 void w()
+	{
+	}
+	//private delegate Window w decorates displayOne() before beforeDisplay(), paint() after doPaint(),insertOne() after insertEffect();
+	/*
+	The following code is produced by UCSY Compiler
+	void display()
+	{
+		w.display();
+		beforeDisplay();
+	}
+	*/
+/*	void insertOne(int a)
+	{
+	}
+*/
+	void push2()
+	{
+	}
+	//Window w;
+	//Why we need to do this kind of programming 
+	//public void insert()
+}

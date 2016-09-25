@@ -1,0 +1,12 @@
+class MyParent
+{
+	string parentName;
+}
+class TestUCode inherits MyParent
+{
+	string fieldOne;
+	int filedTwo;
+	public static void main(string[]args)
+	{
+	}
+}

@@ -1,0 +1,59 @@
+interface ISomeOne
+{
+	void methodOne();
+}
+interface ISomeTwo inherits ISomeOne
+{
+	void methodTwo();
+}
+interface ISomeThree inherits ISomeOne,ISomeTwo
+{
+	void methodThree();
+}
+abstract class ClassOne implements ISomeTwo
+{
+	public ClassOne()
+	{
+		Console.println("Constructed ClassOne");
+	}
+	public void methodOne()
+	{
+		Console.println("MehtodOne of ClassOne");
+	}
+	
+}
+class ClassTwo inherits ClassOne
+{
+	public ClassTwo()
+	{
+	}
+	public override void methodTwo()
+	{
+		Console.println("methodTwo of ClassTwo");
+	}
+}
+class ClassThree implements ISomeTwo
+{
+	public ClassThree()
+	{
+	}
+	public void methodOne()
+	{
+		Console.println("MetodOne of Classthree");
+	}
+	public void methodTwo()
+	{
+		Console.println("MethodTwo of Classthree");
+	}
+	public static void main(string[]args)
+	{
+		
+		ISomeTwo s = new ClassTwo();
+		Console.println("Yeah I got it");
+		s.methodOne();
+		Console.println("Never mind");
+		s = new ClassThree();
+		s.methodOne();
+		s.methodTwo();
+	}
+}

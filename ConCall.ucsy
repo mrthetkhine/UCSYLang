@@ -1,0 +1,41 @@
+class ConCall
+{
+	int a;
+	long l;
+	ConCall(int a ,long l)
+	{
+		Console.println("Welcome to ");
+		Console.println(a);
+		Console.println(l);
+		this.a = a;
+		this.l = l;
+		Console.println("Fine ok");
+		Console.println(this.a);
+		Console.println(this.l);
+	}
+	
+	ConCall(int a)
+	{
+		Console.println("Shit ");
+		Console.println(a);
+	}
+	ConCall()
+	{
+		Console.println("Constructor Ok");
+	}
+	void method(int d)
+	{
+		Console.println("Fine onokon");
+		Console.println(d);
+	}
+	public static void main(string[]args)
+	{
+		//Console.println("Good night");
+		ConCall c = new ConCall(3,456L);
+		ConCall e = new ConCall(3);
+		e.method(3000);
+		//ConCall g = new ConCall();
+		//g.method(300);
+		//return;
+	}
+}

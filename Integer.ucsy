@@ -1,0 +1,20 @@
+class Integer
+{
+	Integer(int k)
+	{
+		Console.println("I am constructor");
+	}
+	public native static string toString(int data)
+	{
+	}
+	public static void main(string[]args)
+	{
+		for(int i=0;i<12;i+=1)
+		{
+			Integer integer = new Integer(990);
+			string myInt =integer.toString(300);
+			Console.println(myInt);
+		}
+		Console.println("Arra ok");
+	}
+}

@@ -1,0 +1,38 @@
+class StaticOne
+{
+	public static void method()
+	{
+		ConsoleOutput.println("StaticOne Method");
+	}
+}
+class StaticTwo
+{
+	public StaticTwo()
+	{
+	}
+public	void method()
+	{
+		ConsoleOutput.println("StaticTwo call other two method ");
+		StaticOne.method();
+		methodOne();
+		methodTwo();
+		
+	}
+	void methodOne()
+	{
+		ConsoleOutput.println("methodOne of static Two");
+	}
+	void methodTwo()
+	{
+		ConsoleOutput.println("method two of Static Two");
+	}
+}
+class StaticThree
+{
+	public static void main(string[]args)
+	{
+		StaticTwo two ;
+		two = new StaticTwo();
+		two.method();	
+	}
+}

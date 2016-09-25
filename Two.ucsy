@@ -1,0 +1,46 @@
+//This is save under OOP
+class Two  
+{
+	/*
+	int[][] a = new int[1][2];
+	Class[] ok ;
+	@MetaInstance metaInstacne;
+	functor void myFunctor(Human:Teacher e, Doctor t);
+	*/
+	static long retLong()
+	{
+		return 34L;
+	}
+	static float retFloat()
+	{
+		return 2.3;
+	}
+	static double retDouble()
+	{
+		return 9.0D;
+	}
+	public static void main(string[]args)
+	{
+		Console.println( 8>9);
+		Console.println(8<9);
+		Console.println(8.9>=8.2);
+	}
+}
+/*
+interface MyFace
+{
+	void method();
+	void method2();
+	int method();
+}
+*/	
+
+
+
+
+
+
+
+
+
+

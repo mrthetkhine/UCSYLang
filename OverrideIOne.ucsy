@@ -1,0 +1,52 @@
+class OverrideIOne implements IOne
+{
+	public override void pOneMethod()
+	{
+		Console.println("Implemented by OverrideOne=> pOneMethod");
+	}
+	public override void pTwoMethod()
+	{
+		Console.println("Implemented by OverrideOne=>pTwoMethod");
+	}
+	public override void iOneMethod()
+	{
+		Console.println("Implemented by OverrideOne=>iOneMethod");
+	}
+	OverrideIOne()
+	{}
+	public override void iThreeMethod()
+	{
+		Console.println("Implemented by OverrideIOne->iThreeMethod");
+	}
+	public static void main(string[]args)
+	{
+		IOne one = new OverrideIOne();
+		one.pOneMethod();
+		one.iThreeMethod();
+		one = new OverrideIOneTwo();
+		one.pOneMethod();
+	}
+}
+class OverrideIOneTwo implements IOne
+{
+	public override void pOneMethod()
+	{
+		Console.println("Implemented by OverrideIOneTwo=> pOneMethod");
+	}
+	public override void pTwoMethod()
+	{
+		Console.println("Implemented by OverrideOneTwo=>pTwoMethod");
+	}
+	public override void iOneMethod()
+	{
+		Console.println("Implemented by OverrideOneTwo=>iOneMethod");
+	}
+	public OverrideIOneTwo()
+	{}
+	public override void iThreeMethod()
+	{
+		Console.println("Implemented by OverrideIOneTwo->iThreeMethod");
+	}
+	
+}
+	

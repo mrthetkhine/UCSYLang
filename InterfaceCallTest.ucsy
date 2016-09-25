@@ -1,0 +1,77 @@
+interface Fly
+{
+	void fly();
+	
+}
+interface Move
+{
+	void move();
+}
+abstract class Vehicle implements Move,Fly
+{
+	public override void move()
+	{
+		Console.println("Vechicle Move");
+	}
+
+}
+class Car inherits Vehicle
+{
+	public Car()
+	{
+		Console.println("Constructor of Car");
+	}
+	public override void move()
+	{
+		Console.println("Moving Car");
+	}
+	public override void fly()
+	{	
+		Console.println("Car is Flying");
+	}
+}
+class People implements Move,Fly
+{
+	public People()
+	{
+	}
+	public override void fly()
+	{
+		Console.println("People fly");
+	}
+	public override void move()
+	{
+		Console.println("People move");
+	}
+	public static void main(string[]args)
+	{
+		Fly f = new Bird();
+		f.fly();
+		f = new People();
+		f.fly();
+		f = new Animal();
+		f.fly();
+		f = new Car();
+		f.fly();
+	}
+}
+class Animal implements Fly
+{
+	public Animal()
+	{
+	}
+	public override void fly()
+	{
+		Console.println("Animal Fly");
+	}
+}
+class Bird inherits Animal
+{
+	public Bird()
+	{
+	}
+	public override void fly()
+	{
+		Console.println("Bird fly");
+	}
+}

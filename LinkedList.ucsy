@@ -1,0 +1,63 @@
+class Node
+{
+	public int data;
+	public Node next;
+	
+	public Node(int da)
+	{
+		//Console.println("Ha");
+		//Console.println(da);
+		data = da;
+		//Console.println("fuckk");
+		next = null;
+	}
+}
+class LinkedList
+{
+	Node start ;
+		
+	LinkedList()
+	{
+		start = null;
+		Console.println("Ok");
+	}
+	
+	void add(int da)
+	{
+		Node newNode = new Node(da);
+		///Console.println("That is nice");
+		if(start == null )
+		{
+			start = newNode;
+		}
+		else
+		{
+			Node current = start;
+			while(current.next != null)
+			{
+				current = current.next;
+			}
+			current.next = newNode;
+		}
+	}
+	void display()
+	{
+		Node current = start;
+		while(current != null)
+		{
+			Console.println(current.data);
+			current = current.next;
+	
+		}
+	}
+	public static void main(string[]args)
+	{
+		Console.println("Fine");
+		LinkedList list = new LinkedList();
+		list.add(10);
+		list.add(20);
+		list.add(30);
+		list.display();
+	}
+	
+}

@@ -1,0 +1,52 @@
+class Stack
+{
+	public void push(int  a)
+	{
+		Console.println("Parameter is");
+		Console.println(a);
+		Console.println("Handled by Stack push");
+	}
+	public int getInt()
+	{
+		Console.println("Handled by stack getInt");
+		return 200;
+	}
+	public int push2(int a)
+	{
+		Console.println("Handled by Stack push 2");
+		return 300;
+	}
+}
+interface List 
+{
+	void add(int a);
+	int getInteger();
+	
+}
+class ClassAdapter adapts List with Stack add(int a) to push(30), getInteger() to getInt()
+{
+	ClassAdapter()
+	{
+	}
+	//class ClassAdapter extends Stack implements List
+	//{
+	//	void add(int a)
+	//            {
+	//		push(a);
+	//	}
+	//}
+	//The following must be compile
+	
+
+	/*
+	void add( int a)
+	{
+	}
+	*/
+	public static void main(string[]args)
+	{
+		ClassAdapter c = new ClassAdapter();
+		Console.println("Fine at this point");
+		c.add(30);
+	}
+}

@@ -1,0 +1,12 @@
+interface InterfaceParent
+{
+	void parentMethdo();
+}
+interface InterfaceChild inherits InterfaceParent
+{
+	void childInterface();
+}
+class InterfaceDecorates
+{
+	delegate InterfaceChild c decorates childInterface() after ourMethod();
+}

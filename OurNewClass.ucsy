@@ -1,0 +1,33 @@
+class OurNewClass inherits Parent
+{
+	public static void main(string[]args)
+	{
+		super();
+		//this.me();
+	}
+	public void hello()
+	{
+		Human h;
+		h.n.hello();
+	}
+}
+class Human
+{
+	public Another n;
+	public string toString()
+	{
+	}
+}
+class Another
+{
+	public void hello()
+	{
+	}
+}
+class Parent
+{
+	public void me()
+	{
+	}
+
+}

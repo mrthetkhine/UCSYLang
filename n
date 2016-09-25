@@ -1,0 +1,64 @@
+class Control
+{
+	public static void main(string[]args)
+	{
+		int a = 30;	
+		int b = 10;
+		/****
+
+
+
+
+		
+
+		
+		if(a < b)
+			Console.println("a is less than b");
+		else if(a==b)
+			Console.println("They are same");
+		else 
+			Console.println("May be a is larger than b");
+		*/	
+		boolean data = true;
+		int counter = 0;
+		while( data )
+		{
+			Console.println("Part Of While");
+			counter = counter +1;
+			if(counter == 3)
+				data = false;
+		}
+	
+		counter = 0;
+
+		do
+		{	
+			Console.println("Inside Do while");
+			if( counter == 2)
+				break;
+			
+			int whileVar = 0;
+			while( whileVar < 5)
+			{
+				Console.println("Nested While");
+				whileVar = whileVar + 1;
+				if( whileVar==3)
+					break;
+			}
+			Console.println("End of nested while");
+			counter = counter +1;
+		}while(counter < 5);
+		
+		int i=0;
+		int k = 4/ 5;
+		/*
+		
+		for( ;i<6;)
+		{
+			Console.println("Inside for statement");
+			i = i +1;
+		}
+		*/
+		Console.println("Complete");
+	}
+}

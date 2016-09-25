@@ -1,0 +1,35 @@
+//This program demostrate array and sorting 
+class Sort
+{
+	public static void main(string[]args)
+	{
+		int[] a = new int[10];
+		for( int i=0;i< 10 ; i+=1)
+		{
+			Console.print("Enter element ");
+			Console.print( i );
+			Console.print(" : ");
+			a[ i ] = Console.readInt();
+		}
+		for(int i=0;i< 10 ;i+=1)
+		{
+			int largest = i;
+			for( int j = i+1; j< 10; j+=1)
+			{
+				if( a[ largest ] < a[j])
+				{
+					largest = j;	
+				}
+			}
+			int temp = a[i];
+			a[i] = a[largest];
+			a[ largest ] = temp;
+			//Console.println(a[i]);
+		}
+		Console.println("Sorted List ");
+		for(int i=0;i<10;i+=1)
+		{
+			Console.println(a[i]);
+		}
+	}
+}

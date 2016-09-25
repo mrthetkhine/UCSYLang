@@ -1,0 +1,36 @@
+class Input
+{
+	public static void main(string[]args)
+	{
+		/*
+		int data ;
+		Console.println("Enter data");
+		data = Console.readInt();
+		Console.print("Data is ");
+		Console.println(data);
+
+		execute data times
+		{
+			MessageBox.show("Wleocme to UCSY");
+		}
+		float fData ;
+		fData = Console.readFloat();
+		Console.print("The flaot is ");
+		Console.println(fData);
+		Console.println("Enter a character ");
+		*/
+		char c ;
+		c = Console.readChar();
+		Console.println("Read char is ");
+		Console.println(c);
+		Console.print("Please enter a long ");
+		long l = Console.readLong();
+		Console.print("You provided ");
+		Console.println( l );
+		Console.print("Please enter a double ");
+		double d = Console.readDouble();	
+		Console.print("You provided double value  ");
+		Console.println( d );
+	}
+
+}

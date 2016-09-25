@@ -1,0 +1,15 @@
+class CompoundAssign
+{
+	public static void main(string[]args)
+	{
+		int a = 10;
+		a += 20;
+		Console.println(a);
+		a *= 5;
+		Console.println(a);
+		a %= 4;
+		Console.println(a);
+		a /= 5;
+		Console.println(a);
+	}
+}

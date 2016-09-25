@@ -1,0 +1,17 @@
+interface IPOne
+{
+	void pOneMethod();
+
+}
+interface IThree
+{
+	void iThreeMethod();
+}
+interface IPTwo inherits IThree
+{
+	void pTwoMethod();
+}
+interface IOne inherits IPOne,IPTwo
+{
+	void iOneMethod();
+}

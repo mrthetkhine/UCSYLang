@@ -1,0 +1,47 @@
+class Factorial
+{
+	Factorial()
+	{
+	}
+	 static int fact(int n)
+	{
+		//Console.print("n is ");
+		//Console.println(n);
+		if (n==1)
+			return 1;
+		else 
+		{		
+			return   n*fact(n-1);
+		}
+	}
+	/*
+	static void display(int a)
+	{
+		Console.print("Hello ");
+		Console.println(a);
+		if(a == 1)
+			return;
+		else
+			display(a-1);
+	}
+	*/
+	static double getDouble()
+	{
+		return 3444.4D;
+	}
+	public static void main(string[]args)
+	{
+		/*
+		Console.println("OhNo");
+		//getDouble();	
+		//getDouble();
+		double d = getDouble();	
+		Factorial f = new Factorial();
+		Console.println("Hello");	
+		Console.println(3455.4D);
+		*/
+		long ac = Factorial.fact(3);
+		Console.println(ac);
+		//display(3);
+	}
+}

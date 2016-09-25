@@ -1,0 +1,33 @@
+//Save this 
+//The Development of an Object Oriented Programming Langauge, UCSY Unified Computing Secret for You
+abstract class MyAbstractClass
+{
+	public abstract void methodOne();
+	
+}
+class Save inherits MyAbstractClass
+{
+	static long l;
+	static int i;
+	Save()
+	{
+		l = 2147483649L;
+	}
+	public override void methodOne()
+	{
+		//l = 89L;
+		Console.println(l);	
+	}
+	public static void main(string[]args)
+	{
+		
+		Save s = new Save();
+		s.methodOne();
+		
+		l =  9999999L;
+		Console.println(l);
+		i = 300;
+		Console.println(i);
+	}
+	
+}

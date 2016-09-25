@@ -1,0 +1,22 @@
+class NestedDo
+{
+	public static void main(string[]args)
+	{
+		int outer = 0;
+		do
+		{
+			Console.print("Outer loop ");
+			Console.println( outer );
+			
+			int inner  = 0;
+			do
+			{
+				Console.print("inner ");
+				Console.println( inner );
+				inner = inner + 1;
+			}while( inner < 7);
+		
+			outer = outer + 1;
+		}while(outer < 5);
+	}
+}

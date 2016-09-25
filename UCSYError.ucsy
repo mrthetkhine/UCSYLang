@@ -1,0 +1,26 @@
+class JavaError
+{
+	public static void main(String[]args)
+	{
+				
+		int a = 30;
+		switch(a)
+		{
+			case 1:
+				switch(a)
+				{
+					case 3: //This is the line error occur
+					if( ((true == false) and ((a == 3))) or ((false == true and not false)))
+						if((a == 4) and ((4 == a) and (false == true)) or ((false != true)))
+							if((false != true) and ((false == true) or ((false and true) or (true == false))))
+							//int a;
+							Console.out.println ("Wee");	
+							//new Fuck();
+							//b = 40;
+					break;
+					
+				}
+			break;
+		}
+	}		
+}

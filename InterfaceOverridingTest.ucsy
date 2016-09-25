@@ -1,0 +1,29 @@
+interface InterBaseOne
+{
+	void baseOneMethod();
+}
+interface InterBaseTwo
+{
+	void baseTwoMethod();
+}
+interface ParentOne inherits InterBaseOne, InterBaseTwo
+{
+	void parentOneMethod();
+}
+interface InterBaseThree
+{
+	void baseThreeMethod();
+
+}
+//This interface is to test overlapping of interface InterBaseOne seen by MyClass
+//Checking exculde overlapping interface for performance reason
+interface ParentTwo inherits InterBaseThree, InterBaseOne
+{
+	void parentTwoMethod();
+}
+class MyClass implements ParentOne,ParentTwo
+{
+	public override void baseThreeMethod()
+	{
+	}
+}

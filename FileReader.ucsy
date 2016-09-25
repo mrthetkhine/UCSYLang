@@ -1,0 +1,16 @@
+class FileReader
+{
+	string fileName;
+	Object nativeFile;
+	public FileReader(string name)
+	{
+		this.fileName = name;
+		openFile();
+	}
+	public native void openFile()
+	{
+	}
+	public native string readLine()
+	{
+	}
+}

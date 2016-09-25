@@ -1,0 +1,35 @@
+/*
+class Mother
+{
+	float floatData;
+}
+class One inherits Mother
+{
+	public int oneData;
+	public float parentMethod()
+	{
+	}
+}
+
+interface MyInterface
+{
+	boolean interMethod();
+}
+*/
+class Two// inherits One// implements MyInterface
+{/*
+	char charData;
+	
+	public override boolean interMethod()
+	{
+		return false;
+	}
+*/
+	public static void main(string[]args)
+	{
+		//int a = charData or oneData + floatData and parentMethod();
+		//Object[] a =new Object[2][3];
+		//Object c = new Two();
+		int []a = new char[3][4];
+	}
+}

@@ -1,0 +1,15 @@
+class TestStaticCall
+{
+	static long getLong()
+	{
+		return 34L;
+	}
+	public static void main(string[]args)	
+	{
+		//execute 13 times
+		//{
+			long l = getLong();	
+			Console.println(3444L);
+		//}
+	}
+}

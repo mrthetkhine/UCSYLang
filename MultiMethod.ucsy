@@ -1,0 +1,23 @@
+//Heoe
+class Human
+{
+}
+class Doctor
+{
+}
+class Teacher
+{
+}
+class Test 
+{
+	
+	multi void overload(Human: Doctor d, Human: Teacher t)
+	{
+		
+	}
+
+	void method()
+	{
+		
+	}
+}

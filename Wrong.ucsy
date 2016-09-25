@@ -1,0 +1,42 @@
+class Wrong
+{
+	public static void main(string[]args)
+	{
+		char c = 'c';
+		switch(c)
+		{
+			case 'b':
+				Console.println("That is a");
+			break;
+			case 'c':
+				Console.println("That is 89");
+			break;
+		}
+		switch( 100 )
+		{
+			case 3:
+				Console.println("That is three");
+			break;
+			case 3:
+			break;
+		}
+	}
+}
+class Console
+{
+	public static void println(string data)
+	{
+	}
+}
+interface MyInterface
+{
+	void normalInterfaceMethod();
+}
+/*
+free class myFreeClass of Wrong
+{
+	void method()
+	{
+	}
+}
+*/

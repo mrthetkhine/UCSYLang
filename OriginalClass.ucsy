@@ -1,0 +1,35 @@
+
+free class ImplementationOne of OriginalClass
+{
+	void methodOne()
+	{
+		Console.println("Implementation one method");
+	}
+}
+free class ImplementationTwo of OriginalClass
+{
+	void methodTwo()
+	{
+		Console.println("Implementation two method");
+	}
+}
+class OriginalClass
+{
+	public OriginalClass()
+	{
+	}
+	rebindable void method()
+	{
+		Console.println("Original method");
+	}
+	public static void main(string[]args)
+	{
+		OriginalClass one = new OriginalClass();
+		one.method();
+		rebind one.method with methodOne of ImplementationOne;
+		one.method();
+		
+		rebind one.method with methodTwo of ImplementationTwo;	
+		one.method();
+	}
+}

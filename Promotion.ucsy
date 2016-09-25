@@ -1,0 +1,10 @@
+class Promotion
+{
+	public static void main(string[]args)
+	{
+		int a = 20;
+		float f = 3.4;
+		double d = a+ f;
+		Console.println(d);
+	}
+}

@@ -1,0 +1,37 @@
+class Animal
+{
+	public static Mammal getMammal(int a)	
+	{
+		string my_Car;
+		Console.println("That is interesting");
+		execute 4 times
+		{	
+			execute 3 times
+			{
+				Console.println("I am a programmer inner loop");
+			}
+			//Console.println("Outer loop");
+		}
+		return new Mammal();
+	}
+	void display()
+	{
+	}
+}
+class Mammal inherits Animal
+{
+	public Mammal()
+	{
+	}
+	public override void display()	
+	{
+		MessageBox.show("Arr");
+	}
+	public static void main(string[]args)
+	{
+		Mammal m ;
+		m =  Animal.getMammal(5);
+		m.display();
+	}
+
+}

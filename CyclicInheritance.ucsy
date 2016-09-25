@@ -1,0 +1,10 @@
+class ClassOne inherits ClassTwo
+{
+
+}
+class ClassTwo inherits ClassThree
+{
+}
+class ClassThree inherits ClassOne
+{
+}

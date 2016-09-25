@@ -1,0 +1,38 @@
+
+class Normal
+{
+	void method()
+	{
+	}
+}
+free class FreeDom of Normal
+{
+	void changeOne()
+	{
+	}
+}
+interface ParentInferface
+{
+	void parentMethod();
+}
+interface MyInterface inherits ParentInterface
+{
+	void methodOfInterface();
+}
+abstract class MyFinal implements MyInterface
+{
+	abstract void abstractMethod()
+	{
+	}
+}
+class IOError inherits MyFinal implements MyInterface
+{
+	public override void abstractMethod()
+	{
+		//Console.println("Yeah I override");
+	}
+	public IOError()
+	{
+		//this(data);
+	}
+}

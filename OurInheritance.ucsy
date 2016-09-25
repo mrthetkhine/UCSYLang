@@ -1,0 +1,21 @@
+class ParentOne
+{
+	final void parentOneMethod()
+	{
+	}
+}
+class ParentTwo inherits ParentOne
+{
+	override void parentTwoMethod()
+	{
+	}
+	override void parentOneMethod()
+	{
+	}
+}
+class OurInheritance inherits ParentTwo
+{
+	void method()
+	{
+	}
+}

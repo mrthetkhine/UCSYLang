@@ -1,0 +1,10 @@
+class TCPClientSocket
+{
+	public Object nativeSocket;
+	public TCPClientSocket()
+	{
+	}
+	public native void sendData(string str)
+	{
+	}
+}

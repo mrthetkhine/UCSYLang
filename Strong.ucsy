@@ -1,0 +1,10 @@
+class Strong
+{
+	public static void main(string[]args)
+	{
+		int a = 3;
+		float f = 3.4;
+		a+=f;
+		Console.println(f);
+	}
+}

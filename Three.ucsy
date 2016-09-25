@@ -1,0 +1,22 @@
+class Three inherits Object
+{
+	public static void main(string[]args)
+	{
+		MessageBox.show("Nice To work with UCSY\nWelcome to Unified Computing Secret for You");
+		MessageBox.show("A programming Language Designed to faciliate creation of Object Oriented Programming");
+		Console.println("That will be printed in Console Screen");		
+	}
+}
+/*
+interface MyInterface
+{
+}
+
+free class MyFree of Three
+{
+	void method()
+	{
+	
+	}
+}
+*/

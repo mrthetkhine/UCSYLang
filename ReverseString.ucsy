@@ -1,0 +1,16 @@
+class ReverseString
+{
+	public static void main(string[]args)
+	{
+		string userInput ;
+		Console.print("Please enter a string ");
+		userInput = Console.readString();
+		String myString = new String( userInput );
+		Console.print("Length of string is ");
+		Console.println(  myString.getLength());
+		for(int i= myString.getLength() -1; i >= 0 ; i-=1)
+		{
+			Console.print( myString.charAt(i) );
+		}
+	}
+}

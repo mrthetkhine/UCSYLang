@@ -1,0 +1,39 @@
+/*import ucsy.lang.*;
+import ucsy.net.*;
+import ucsy.io.*;
+*/
+class Base
+{
+	public void main(String[]args)
+	{
+	}
+}
+class MyClass inherits Base
+{
+	public boolean a;
+	public static void main(String[]args)
+	{
+		
+	}
+	override String toString()
+	{
+		label:
+		{
+		return false;
+		return "This is MyClass";
+		}
+	}
+	 void myClass()
+	{
+		this.a = false;
+		//this.d.a.fu.d=4;
+		//int a = this.a + false;
+		//this.a.b.c.d.e = this.data + "Chage";
+		//Console.println(this.a.b.c.d );
+		//int a = 3 + 4;
+		long l ;
+		int a = (int)l;
+		//return this;
+	}
+}
+

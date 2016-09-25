@@ -1,0 +1,72 @@
+class DelegateStack
+{
+	int top;
+	int [] data;
+	public DelegateStack()
+	{
+		top = 0;
+		data = new int[100];
+		Console.println("OK");
+	}
+	public void push(int a)
+	{
+		Console.println("Going to execute");
+		
+		data[top] = a;
+		top += 1;
+		Console.println("Have pushed");
+	}	
+	public int pop()
+	{
+		int index = top-1;	
+		top -= 1;
+		return data[top];
+	}
+}
+class ExampleDelegateClass 
+{
+	public ExampleDelegateClass()
+	{
+		stack = new DelegateStack();
+	}
+	delegate DelegateStack stack handles all;
+	
+		//int stack;
+	/************************************************************************
+	========= Static semantic check ===================================
+
+	========= Static semantic check ===================================
+		
+	Compiler check to see if there exist some public method of DelegateStack 
+	if not report error
+	if there ,it check all public method  of DelegateStack to see they are already defined ass member in this class 
+	if so , report error
+	else insert method definition as follows.
+		
+	The compiler emits following code
+	DelegateStack stack;
+	public void push(int a)
+	{
+		stack.push( a );
+	}
+	public int pop()
+	{
+		return stack.pop();
+	}
+	*/
+}
+class ChildClass inherits ExampleDelegateClass
+{
+	ChildClass()
+	{
+	}
+
+	
+	public static void main(string[]args)
+	{
+		ExampleDelegateClass c =new ExampleDelegateClass();
+		c.push(100);
+		int a = c.pop();
+		Console.println(a);
+	}
+}

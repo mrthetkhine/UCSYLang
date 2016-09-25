@@ -1,0 +1,62 @@
+class MyOriginalClass
+{
+	protected
+	 int a ;
+	public MyOriginalClass()
+	{
+	}
+	rebindable void methodRe(int d)
+	{
+		Console.print("Original Method with parameter ");
+		Console.println(d);
+	}
+	void normalMethod()
+	{
+		
+	}
+	public static void main(string[]args)
+	{
+		Console.println("How are y");
+		MyOriginalClass c = new MyOriginalClass();
+		c.methodRe(20);
+		rebind c.methodRe with method of MyFree;
+		c.methodRe(30);
+		MyOriginalClass d = new MyOriginalClass();
+		d.methodRe(39);
+		rebind d.methodRe with doSomething of MyFreeTwo;
+		d.methodRe(40);
+		rebind d.methodRe with method of MyFree;
+		d.methodRe(80);
+	}
+}
+class NextClass
+{
+	public static void main(string[]args)
+	{
+		
+	}
+	
+}
+free class FreeTwo of NextClass
+{
+	void method(int a)	
+	{
+	}
+}
+free class MyFree of MyOriginalClass
+{
+	
+	 void method(int a)
+	{
+		Console.print("Change This ");
+		//Console.println(c);
+		Console.println(a);
+	}
+}
+free class MyFreeTwo of MyOriginalClass
+{
+	void doSomething(int k)
+	{
+		Console.println("Executed Do Something");
+	}
+}

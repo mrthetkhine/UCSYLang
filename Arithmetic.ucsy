@@ -1,0 +1,34 @@
+class Arithmetic
+{
+	static int method()
+	{
+		return 8;
+	}
+	static float methodFloat()
+	{
+		return 3.999;
+	}
+	static double methodLong(long l,double d)
+	{	
+		//float f = 3.3;
+		Console.print(" long is ");
+		Console.println(l);
+		Console.println("double is ");
+		Console.println(d);
+		return 3.3;
+	}
+	public static void main(string[]args)
+	{
+	       int intOne = 20;
+                     float floatOne = 3.5;
+                     long longOne = 5000;
+                     double doubleOne = 1.2;
+                     Console.println( intOne + floatOne   ); //23.5
+                     Console.println( longOne - floatOne   ); //5020
+                     Console.println( doubleOne + intOne   ); //21.2
+                     Console.println( intOne * floatOne   ); //
+                     Console.println( intOne / floatOne   ); //
+                     Console.println(  5 % intOne   ); //
+
+	}
+}

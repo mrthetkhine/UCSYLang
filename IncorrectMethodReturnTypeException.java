@@ -1,0 +1,3 @@
+class IncorrectMethodReturnTypeException extends Exception
+{
+}

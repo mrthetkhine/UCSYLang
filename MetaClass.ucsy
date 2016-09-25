@@ -1,0 +1,56 @@
+meta class Base default MyClass
+{
+	void baseMethod();
+	void anotherBaseMethod();
+}
+meta class MetaClass inherits Base default MyClass
+{
+	new();
+	void me();
+	
+	//void methoe();
+	//metod();
+}
+class MyClass
+{
+	public MyClass()	
+	{
+	}
+
+	public void baseMethod()
+	{
+	}
+
+	public void me()
+	{
+	}	
+	
+	public void anotherBaseMethod()
+	{
+	}
+}
+class AnotherClass conforms MetaClass
+{
+	//I don't have not test a method specified override attribute but it have nothing to override from parent 
+	override String toString()
+	{
+	}
+	public AnotherClass()
+	{
+	}
+	public void me()
+	{
+	}
+	public void baseMethod()
+	{
+	}
+	public void anotherBaseMethod()
+	{
+	}
+}
+class SomeClass
+{
+	public void baseMethod()
+	{	
+	}
+}

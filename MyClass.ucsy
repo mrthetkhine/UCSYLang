@@ -1,0 +1,131 @@
+/*import ucsy.lang.*;
+import ucsy.Net.*;
+import ucsy.io.*;
+
+interface MyInterface
+{
+	void interfaceMethod();
+}
+*/
+class Root 
+{
+	/*
+	static Root()
+	{
+		ConsoleOutput.println("Class Root is Loaded into Runtime");
+		new MyClass();
+	}
+	*/
+	public static string rootStr;
+	protected Root()
+	{
+		ConsoleOutput.println("Constructor of Root");
+	}
+	protected void someMethod()
+	{
+		ConsoleOutput.println("some method of Root");
+	}
+	public static void staticMethod()
+	{
+		ConsoleOutput.println("Fine to be fine");
+	}
+}
+class MyClass inherits Root
+{
+	/*
+	static MyClass()
+	{
+		ConsoleOutput.println("Class MyClass is Loaded into Runtime System");
+	}	
+	*/
+	override string toString()
+	{
+		return "This is MyClass";
+	}
+	override string myS()
+	{
+		return "Hello";
+	}
+	final void finalMethod()
+	{
+	}
+	public MyClass()
+	{
+		ConsoleOutput.println("Constructor of MyClass");
+		//this.data.code = "Chage";
+		//int a = 3 + 4;
+	}
+	/*
+	public override void someMethod()
+	{
+		ConsoleOutput.println("Some MEthod of MyClass");
+	}*/
+	string myClassStr;
+	string otherStr;
+	protected void show()
+	{
+		ConsoleOutput.println( myClassStr );
+		ConsoleOutput.println( otherStr );
+	}
+	
+}
+class ChildClass inherits MyClass
+{	
+	/*
+	static ChildClass()
+	{
+		ConsoleOutput.println("ChildClass is loaded into UVM Runtime");
+	}
+	*/
+	static string myString;
+	ChildClass()
+	{
+	}
+	public  override void someMethod()
+	{
+		ConsoleOutput.println("some method of ChildClass");
+	}
+	string strData;
+	void showTwo()
+	{
+		show();
+		ConsoleOutput.println( strData);
+	}
+	void methodThree(string one, string two, string three)
+	{
+		ConsoleOutput.println(one);
+		ConsoleOutput.println(two);
+		ConsoleOutput.println(three);
+	}
+	public static void main(string[]args)
+	{
+		/*Root.staticMethod();
+		Root.rootStr = "String Assigned to Root";
+		ConsoleOutput.println(Root.rootStr );
+		*/
+		ChildClass c;
+		
+		c = new ChildClass();
+		c.myClassStr = "Weclome to GetInstance";
+		c.otherStr      = "That is really exicting";
+		c.strData       = "Third Data";
+		c.showTwo();
+		c.methodThree("Third Data","Machine","Mighty");
+		/*
+		ConsoleOutput.println("Welcome to Unified Computing Secret for You");
+		ConsoleOutput.println("System programming is diffcult to accomplish");
+		Root r ;
+		r = new ChildClass();
+		r.someMethod();
+		r = new MyClass();
+		r.someMethod();
+		r = new Root();
+		r.someMethod();
+		myString = "Assignment to myString";
+		ConsoleOutput.println( myString );
+		
+		ConsoleOutput.println("End Of Program");
+		*/
+	}
+}
+

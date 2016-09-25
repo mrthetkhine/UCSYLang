@@ -1,0 +1,11 @@
+class PerformanceTest
+{
+	public static void main(string[]args)
+	{
+		for(int i=0;i<3990;i+=1)
+		{
+			Console.println("Hello");
+			Console.println("Very Dirty");
+		}
+	}
+}

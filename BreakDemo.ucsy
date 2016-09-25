@@ -1,0 +1,22 @@
+class BreakDemo
+{
+	public static void main(string[]args)
+	{
+		for(int i=0;i< 10;i+=1)
+		{
+			Console.print("Value of i is");
+			Console.println(i);
+			int doCounter = 0;
+			if( i == 5)
+				break;
+			do
+			{
+				Console.print("The value of doCounter is ");
+				Console.println( doCounter );
+				doCounter += 1;
+				if(doCounter == 3)
+					break;
+			}while ( doCounter < 5);
+		}
+	}
+}

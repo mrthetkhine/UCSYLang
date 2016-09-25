@@ -1,0 +1,27 @@
+class WhileDemo
+{
+	public static void main(string[]args)
+	{
+		int counter = 0;
+		while(counter < 5)	
+		{		
+			Console.println("Hello");	
+			//if(counter ==3 )
+			//	break;
+			counter = counter +1;
+			int inner = 0;
+			for(inner =0;inner<4;inner = inner+1)
+			    Console.println("for");
+			/*do
+			{
+				Console.println("Do while");
+				//if(inner == 3)
+				//	break;
+				inner = inner + 1;
+				
+			}while(inner < 5);
+			*/
+		}
+		Console.println("End of While statement");
+	}
+}

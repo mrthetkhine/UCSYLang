@@ -1,0 +1,18 @@
+class OriginalClass
+{
+	rebindable void changeableMethod()
+	{
+		Console.println("This implemention can be change at runtime");
+	}
+}
+free class NewFree of OriginalClass
+{
+	void methodOne()
+	{
+		Console.println("This is methodone");
+	}
+	int methodOne()
+	{
+		return 2;
+	}
+}

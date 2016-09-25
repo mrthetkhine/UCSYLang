@@ -1,0 +1,42 @@
+class Stack inherits Parent
+{	/*
+	//int[] a = new int[3];
+	int top = -1;
+
+	public void push(int data)
+	{
+		top = top + 1 ;
+		//a[ top ] = data;	
+	}
+	int pop()
+	{
+		int temp = top;
+		top = top -1;
+//return a[temp];
+	}	*/
+	void main()
+	{
+		Stack s ;
+		Parent  c = new Stack();
+		c = s;
+		int  o = new Parent().h.name;
+		int i;
+		//i =c;
+		//o = i;
+		//i = null;
+		//o = new Exception2();
+	}
+	
+}
+class Parent inherits No
+{
+	public int t;
+	public Human h;
+}
+class Human inherits No
+{
+	public string name;
+}
+class Exception2 inherits Exception
+{
+}

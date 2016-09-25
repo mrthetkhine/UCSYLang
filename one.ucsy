@@ -1,0 +1,96 @@
+package ucsy.lang;
+import ucsy.net.*;
+class MyClass  conforms MetaClassOne,MetaClassTwo
+{
+	MyClass()
+	{
+	}
+	
+	public functor int f();
+	rebindable void superMethod()
+	{
+		Console.println("Welcome to UCSY");
+	}     
+	boolean myBoolean;
+	
+	
+
+}
+/*
+functor int F();
+class List
+{
+	void add(int a)
+	{
+		;
+	}
+	abstract int remove()
+	{
+		throw new Exception();
+		try
+		{
+			
+		}
+		catch(Exception e)
+		{
+			Console.WriteLine("What is this ");	
+		}
+		finally
+		{
+			Console.Printlen("This is modified version of UCSY");
+		}
+	}
+	rebindable void changingMethod()
+	{
+	}
+	public static void main(string[]args)
+	{
+		rebind this.changingMethod = MyFree.superMethod();
+	}
+	
+}
+class Stack adapts List with push() to add(), pop() to remove()
+{
+	@MetaOne m ;
+	multi void multiMethod(NoArgument args)
+	{
+		
+	}
+	@MetaClass method()
+	{
+	}	
+}
+singleton class MySingleton
+{
+	delegate Stack s handles all;
+	delegate List l forwards push(int a) to add(a);
+	delegate MyInterface myI decorates show() after addShow();
+	rebindable void myChangeAble()
+	{
+	}
+	
+}
+
+free class MyFree of MyClass
+{
+	/*MyClass()
+	{
+		;
+	}
+	void superMethod()
+	{
+		;
+	}
+}
+interface MyInterface 
+{
+	void methodOne();
+	void methodTwo();
+	void methodThree();
+}
+meta class MyMeta default MyClass
+{
+	new();
+	void superMethod();	
+}
+*/

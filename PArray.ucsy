@@ -1,0 +1,19 @@
+class PArray
+{
+	public static void main(string[]args)
+	{
+		Console.println("Just Befor Creating Array");
+		int []a = new int[3];
+		Console.println("Not Fine");
+		for(int i=0;i<3;i+=1)
+		{
+			a[i] = 10* (i+1);
+		}
+		Console.println("Are u ok");
+		for(int i=0;i<3;i+=1)
+		{
+			Console.println("Element ");
+			Console.println(a[i]);
+		}
+	}
+}

@@ -1,0 +1,17 @@
+class SetField
+{
+	int a;
+	SetField()
+	{
+		a = -1;
+	}
+	void show()
+	{
+		Console.println(a);
+	}
+	public static void main(string[]args)
+	{
+		SetField f = new SetField();
+		f.show();
+	}
+}

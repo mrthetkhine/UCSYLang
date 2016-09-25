@@ -1,0 +1,33 @@
+interface MyInterface
+{
+}
+class MethodCallTest inherits Simple //implements MyInterface
+{
+	MethodCallTest()
+	{
+	}
+	/*string toString()
+	{
+	}
+*/
+	static void staticMethod(int a)
+	{
+	}
+	void instanceMethod(char c)
+	{
+	}
+	int dataInt;
+	Simple s ;
+	public static void main(string[]args)
+	{
+		int a;
+		MethodCallTest t;
+		//t.s.main("Welcome");
+		//t.strOne ="Hey How are you";
+		a = 30;
+		t = new MethodCallTest();
+		string s;
+		///s = toString();
+		//(MethodCallTest).staticMethod(a);
+	}
+}

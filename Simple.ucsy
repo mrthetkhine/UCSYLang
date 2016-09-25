@@ -1,0 +1,45 @@
+class Simple// inherits Father
+{
+	Simple(int a)
+	{
+	}
+	private static int data;
+	public string strOne;
+	static int[] arr ;
+	public native static void nativeMethod()	
+	{
+		//int a;
+	}
+	public Simple main(string ars)
+	{
+		//main("S").main("HElo");
+		//int[]b;
+		//arr =new int[3];
+		//nativeMethod();
+	}
+	public Simple simpleData;
+	int myInt;
+	public  static void main2(string[]args)
+	{
+		//Simple simple,k;
+		//simple = k;
+		/*int ke ;
+		//ke=simple.myInt; //= simple.simpleData.main("How").arr[3];	
+		Human.method(ke);
+		ke = 9;
+		string[] arr;
+		main2(arr);
+		fatherMethod();
+		*/
+		string []arr;
+		//Console.println("Welcome to UCSY");
+		Simple s;
+		(s).strOne ="Field value";	
+		(Simple).main2(arr);
+		//string[] str;	
+		//main2(str);
+		//new Simple(3).main("Fool");
+		//Console.println(3);
+		
+	}
+}

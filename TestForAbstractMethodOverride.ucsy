@@ -1,0 +1,46 @@
+abstract class BaseAbstractOne implements MyBaseInterface
+{
+	abstract	void abstractBaseOne();
+}
+interface MyBaseInterface
+{
+	void baseInterfaceMethod();
+}
+interface MyInterfaceTwo inherits MyBaseInterface
+{
+	void myInterfaceTwo();
+}
+abstract class BaseAbstractTwo inherits BaseAbstractOne implements MyInterfaceTwo
+{
+	abstract void abstractBaseTwo();
+}
+abstract class MyAbstract inherits BaseAbstractTwo
+{
+	abstract void myAbstract();
+}
+meta class MetaClass default TestForAbstractMethodOverride
+{
+	void metaClassMethod();
+}
+class TestForAbstractMethodOverride inherits MyAbstract implements MyInterfaceTwo conforms MetaClass
+{
+	public override void myAbstract()
+	{
+	}
+	public override void abstractBaseTwo()
+	{
+	}
+	public override void myInterfaceTwo()
+	{
+	}
+	public override void abstractBaseOne()
+	{
+			
+	}
+	public override void baseInterfaceMethod()
+	{
+	}
+	public override void metaClassMethod()
+	{
+	}
+}

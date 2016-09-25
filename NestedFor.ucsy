@@ -1,0 +1,16 @@
+class NestedFor
+{
+	public static void main(string[]args)
+	{
+		for(int i=0;i<3;i = i+1)
+		{
+			Console.print("Outerloop ");
+			Console.println( i );
+			for(int j =0;j< 2;j= j+1)
+			{
+				Console.print("Innerloop ");
+				Console.println(j);
+			}
+		}
+	}
+}

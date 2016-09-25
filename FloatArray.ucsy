@@ -1,0 +1,9 @@
+class FloatArray
+{
+	public static void main(string[]args)
+	{
+		float []fArr = new float[2];	
+		fArr[0] = 3.4;
+		Console.println(fArr[0]);
+	}
+}

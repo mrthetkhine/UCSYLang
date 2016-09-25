@@ -1,0 +1,27 @@
+class PutField
+{
+	//static string myStatic;
+	int data;
+	long myLong;
+	string name;
+	PutField(int data)
+	{
+		data = data;
+		myLong = 3000084;
+		name ="Just another Language";
+		//myStatic ="Oeoe";
+		Console.println("We have setting those");
+	}
+	void show()
+	{	
+		Console.println(data);
+		Console.println(myLong);
+		Console.println(name);
+		//Console.println(myStatic);
+	}
+	public static void main(string[]args)
+	{
+		PutField field = new PutField(300);
+		field.show();
+	}
+}

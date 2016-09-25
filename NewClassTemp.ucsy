@@ -1,0 +1,21 @@
+class Parent 
+{
+	public boolean j;
+}
+class NewClassTemp inherits Parent
+{
+	int c;
+	public void main(string[]args)
+	{
+		int k;
+		while(k < 10)
+		{
+			int j;
+			{
+				char c;
+			}
+			c = 40;
+		}
+		j = 30;
+	}
+}

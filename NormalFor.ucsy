@@ -1,0 +1,46 @@
+class NormalFor
+{
+	NormalFor()
+	{
+	}
+	static void staticMethod(string m1,string m2)
+	{
+		Console.println(m1);
+		Console.println(m2);
+	}
+	void method()
+	{
+		Console.println("OK");
+	}
+	public static void main(string[]args)
+	{
+		//NormalFor f = new NormalFor();
+		
+		//int i0;
+		int sum = 0;
+		
+		for(int  i=1;i<10;i = i+1)
+		{
+			//sum = sum + i;
+			
+			
+			Console.print("Outer ");
+			Console.println( i );
+			for(int j = 1;j<6;j= j+1)
+			{
+				sum = sum + j;
+				Console.println("Inner");
+				if(j == 3 )
+					break;
+			}
+			if( i == 6 )
+				break;
+		}
+		
+			staticMethod("Stirng one","String two");
+			Console.println("sum is ");
+		 	Console.println(sum);
+			Console.println("Hooooo");
+			//Console.println(i);
+	}
+}

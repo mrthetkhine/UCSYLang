@@ -1,0 +1,13 @@
+class MelTin
+{
+	public static void main(string[]args)
+	{
+		TCPServerSocket serverSocket = new TCPServerSocket(80);
+		
+		while(true)
+		{
+			TCPClientSocket clientSocket = serverSocket.getConnection();
+			clientSocket.sendData("HTTP/1.0 200 OK\r\nContent-Length:41\r\nContent-Type:text/html\r\n\r\n<b>Return form Server written in UCSY</b>");
+		}
+	}
+}

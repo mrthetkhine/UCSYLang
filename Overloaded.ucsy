@@ -1,0 +1,41 @@
+class Parent
+{
+	protected void method(float f)
+	{
+	}
+}
+class Overloaded inherits Parent
+{
+	int filed;
+	public void method2()
+	{
+	}
+	
+	void method(char c)
+	{
+	}
+	public void method(char c,int a)
+	{
+	}
+	public void method(int a)
+	{
+	}
+	public void method(short s)
+	{
+	}
+	public static void main(string[]args)
+	{
+		Overloaded o = new Overloaded();
+		//o.method(3);
+	}
+	
+}
+class AnotherClass
+{
+	public static void main(string[]args)
+	{
+		Overloaded o = new Overloaded();
+		byte b ;
+		o.method( b);
+	}
+}

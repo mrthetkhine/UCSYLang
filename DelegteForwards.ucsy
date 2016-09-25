@@ -1,0 +1,36 @@
+interface ListParent
+{
+	void parentMethod2();
+}
+interface List inherits ListParent
+{
+	void add(int a);
+	
+	
+}
+class MyList implements List conforms MyMeta
+{
+	public override void parentMethod2()
+	{
+	}
+	public override void add(int a)
+	{
+	}	
+	public override void hello()
+	{
+	}
+}
+meta class MyMeta default MyList
+{
+	void hello();
+}
+class DelegateForward
+{
+	delegate MyList l forwards insert(int a) to parentMethod2(), welcome() to hello();
+	
+	/*
+	void insert(int a)	
+	{
+	}	
+	*/
+}

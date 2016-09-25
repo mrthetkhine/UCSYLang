@@ -1,0 +1,47 @@
+interface Fly
+{
+	void fly();
+
+}
+class Mammal
+{
+	public void nature()
+	{
+		Console.println("Nature");
+	}
+}
+class Bird inherits Mammal implements Fly
+{
+	public Bird()
+	{
+	}
+	public override void nature()
+	{
+		Console.println ("Bird Nature");
+	}
+	public void fly()
+	{
+		Console.println("I am bird flying");
+	}
+}
+class Aeroplane implements Fly
+{
+	public Aeroplane()
+	{
+		Console.println("I am areoplane constructor");
+	}
+	public void fly()
+	{
+		Console.println(" Areplane flyingb");
+	}
+}
+class InterDemo
+{
+	public static void main(string[]args)
+	{
+		Fly  f = new Bird();
+		f.fly();
+		f = new Aeroplane();
+		f.fly();
+	}
+}

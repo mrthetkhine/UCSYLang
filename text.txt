@@ -1,0 +1,18 @@
+someting change
+
+Type name are inserted into CentralTypeTable as follows
+Type name 
+Class      => O + className
+Interface => $  + interfaceName
+MetatypeClass => @+metaTypeName
+Functor =
+
+boolean T
+char      C
+float      F
+double  D
+byte      B
+short     S
+int         I
+long      L
+string    M

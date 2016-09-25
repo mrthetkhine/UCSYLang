@@ -1,0 +1,79 @@
+//class 
+//import java.swing.text.*;
+class Mamal
+{
+	public string type;
+}
+class Human
+{
+	public string name;
+	public int age;
+	public SuperMan man;	
+	public static void method(long l)
+	{
+	}
+}
+class SuperMan
+{
+	public string name;
+	public void fly()
+	{
+	}
+}
+class Me inherits Human
+{
+	Human h;
+	
+	Me(int a)
+	{
+		//super();
+		//this.me();
+		//char a = true + false;
+		age = 30;
+/*
+		if( true )
+		{
+			char c = false;
+		}
+		else
+		{
+			float f ="This is string";
+		}
+		boolean b;
+		switch( 3)
+		{
+			case b:
+				//Console.println("Threee");
+				char c ='c';
+			break;
+		}
+*/
+		//string c = 3;
+		/*h.age	= "45";	
+		h.name ="Ee";
+		*/
+		Human t;
+		age =34;
+	}
+	public static void main(string[]ay)
+	{
+	//	float a,c,d ;
+		//float b= false and true;
+		//char ay;
+		//int ay;
+		//this();
+		//a();
+		//Human h;
+		//h.man.fly();
+		//man.fly();
+		//method(3);
+		Human[] hello = new Human[3]; 
+		//Hello h ;
+		//h = hello[1];
+		float l ;
+		hello[1].method(34);
+		//Human h;
+		//h.method(l);
+		//int t = not 30;
+	}
+}

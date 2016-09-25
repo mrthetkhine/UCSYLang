@@ -1,0 +1,1 @@
+java -classpath lib\jhall.jar;lib\qizx.jar;lib\resolver.jar; QueryParser %1

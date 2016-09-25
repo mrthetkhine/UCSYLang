@@ -1,0 +1,29 @@
+u4 MAGIC_CODE
+u1 Version
+u2 ConstantPool_Count
+ConstantPoolEntry[ ConstantPool_Count]
+u2 classModifier
+u2 thisClassIndex
+u2 superClassIndex
+u2 interface_count
+u2 interfaces[interface_count]
+u2 field_count
+Field [field_count]
+u2 method_count
+Method [method_count]
+ 
+//================================================
+Field
+u2 fieldModifier
+u2 indexToCPoolForFieldName
+u2 indexToCPoolForFieldType
+//=================================================
+Method 
+u2 methodModifier
+u2 methodNameIndex
+u2 methodSignatureIndex
+u2 sizeOfArgumentsInWord
+u2 sizeOfLocalVariableInWord
+u2 maxSizeOfOperandStackInWord
+u2 lengthOfMethodCode
+u1 code [lengthOfMethodCode]

@@ -1,0 +1,29 @@
+meta class MyMeta default SomeClass
+{
+	new();
+	//new(int a);
+	//void Lme();
+	//new(int k);
+}
+meta class ChildMeta inherits MyMeta default SomeClass
+{	
+	new (int a);
+}
+class MyClass conforms ChildMeta//inherits Parent
+{
+	public MyClass()
+	{
+	}
+}
+interface MyInterface
+{
+	void normal();
+}
+class SomeClass
+{
+	public SomeClass()
+	{}
+	public SomeClass(int ka)
+	{}
+	
+}

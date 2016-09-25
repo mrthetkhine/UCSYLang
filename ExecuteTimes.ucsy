@@ -1,0 +1,11 @@
+class ExecuteTimes
+{
+	public static void main(string[]args)
+	{
+		int a = 5;
+		execute a * 2 times
+		{
+			Console.println("Hello");
+		}
+	}
+}

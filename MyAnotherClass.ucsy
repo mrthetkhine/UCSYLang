@@ -1,0 +1,8 @@
+class MyAnotherClass
+{
+	public static void main(string[]args)
+	{
+		ConsoleOutput.println("How do you implement Unified Virtual Machine");
+		ConsoleOutput.anotherMethod("That is fun to work with UCSY");
+	}
+}

@@ -1,0 +1,43 @@
+class FatherClass
+{
+	/*protected int a ;
+	protected byte b;
+	protected boolean t;
+	protected short s ;
+	*/
+	static long sLong;
+	char c;
+	protected long l;
+	boolean b;
+	protected double d;
+	protected string m;
+	protected float f;
+	FatherClass()
+	{
+		
+	}
+	void method()
+	{
+		//sLong = 4888889L;
+		//long temp = sLong;
+		//Console.println(temp);
+		d = 4.2221D;
+		Console.println(d);
+		c= 'A';
+		b = false;
+		Console.println(c);
+		Console.println(b);
+		Console.println(c);
+		m = "Hoe";
+		Console.println(m);
+		f = 45.5555;	
+		Console.println(f);
+	}
+	public static void main(string[]args)
+	{
+		//double d = 4.555D;
+		//Console.println(d);
+		FatherClass fc =new FatherClass();
+		fc.method();
+	}
+}

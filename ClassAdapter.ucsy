@@ -1,0 +1,73 @@
+
+class Stack// implements Stackable
+{
+	Stack()
+	{
+	}
+	Stack(int size)
+	{
+		this();
+		this.push(size);
+	}
+	
+	void push(int a )
+	{
+		
+	}
+	Human pop()
+	{
+	}
+}
+class List
+{
+	void add(int a)
+	{
+	}
+	Human remove()
+	{
+	}
+}
+/***********************************************************************
+Type checking rule for class adapter
+The compiler emits the followin
+Type checking rule for class adapter
+The compiler emits the following methods to the ClassAdapter
+
+Compiler must check signature after adapts clause add(Integer) exits for List
+Compiler infer return type of the add to be void from the interface List
+Compiler must also check add of List Interface and push of Stack have same return type
+public override void add(Integer a)
+{
+	super.push(a);
+}
+public override int remove()
+{
+	return super.pop(); 
+	Compiler emit return statemetnt base on the type of Stack's pop()
+	This feature add flexibiliy for programmer
+}
+*/
+
+class ClassAdapter adapts List with Stack add(Integer a) to push(a), remove() to pop()
+{	
+//please remove the following comment to see compiler error message 
+//	delegate List l handles all;
+	/*
+	void add(int k)
+	{
+	}
+	void push(int i)
+	{
+	}
+	
+	public override void remove()
+	{
+	}
+	*/
+}
+class NextClass inherits ClassAdapter
+{
+	public override int add(int a)
+	{
+	}
+}

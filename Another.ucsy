@@ -1,0 +1,50 @@
+class Another inherits Parent implements InterfaceOne, InterfaceTwo conforms Something, SomeOne
+{
+	
+	abstract void hello();
+	Another()
+	{
+	}
+	static Another()
+	{
+		int data;
+		data = 30;
+	}
+	static int staticData;
+	int thisIsdata;
+	abstract void methodOne(string k);
+	
+	
+	void methodOne(string s)
+	{
+	}
+	//int staticData;
+	functor void myFunctor();
+	public static void main( string[]args)
+	{
+		Human[] h = new Human[10];
+		//h[0].display(); 	
+		//this();	
+	}
+             native void nativeMethod()
+	{
+		;	
+	}
+}
+interface InterfaceOne inherits ParentOne, ParentTwo//
+{
+	void methodOne();
+}
+free class MyFree of Another
+{
+	void mehodOne()
+	{
+	}
+}
+functor void myFunctor();
+class HelloWorld  adapts MyClass with MyInterface call() to callTwo()
+{
+	void call()
+	{
+	}
+}

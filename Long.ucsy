@@ -1,0 +1,6 @@
+class Long
+{
+	public static native string toString(long longData)
+	{
+	}
+}

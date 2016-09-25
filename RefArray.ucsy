@@ -1,0 +1,26 @@
+class SomeClass
+{
+	public SomeClass()
+	{
+		Console.println("Constructor  of SomeClass");
+	}
+	public void someMethod()
+	{
+		Console.println("SomeMethod of SomeClass");
+	}
+}
+public class RefArray
+{
+	public static void main(string[]args)
+	{
+		SomeClass []sArray = new SomeClass[4];
+		for(int i=0;i<4;i+=1)
+		{
+			sArray[i] = new SomeClass();
+		}
+		for(int i=0;i<4;i+=1)
+		{
+			sArray[i].someMethod();
+		}
+	}
+}

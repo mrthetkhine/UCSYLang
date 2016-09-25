@@ -1,0 +1,29 @@
+class ClassOne
+{
+	public static int data;
+}
+class Operator
+{
+	boolean myBoolean ;
+	public static void main(string[]args)
+	{
+		int k  = 10;
+		boolean j ;
+		
+		//int me =  k +j  ;
+		//j = ClassOne.data and not k;
+		j = 4 >= 3;
+		
+		Console.println(j);
+		j = 4 == 3;
+		//j = not j;
+		//j = ( j or j) and j;	
+		int i = 0;
+		int je = 10;
+		//k = ( i + je );
+		 j = ( j or true )and true;
+		Console.println( j );
+		//char k;
+	}		
+}
+	

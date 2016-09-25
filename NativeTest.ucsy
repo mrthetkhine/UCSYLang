@@ -1,0 +1,28 @@
+class NativeTest
+{
+	public string myStr;
+	int someInt;
+	public NativeTest(string da)
+	{
+		myStr = da;
+	}
+	void setInt()
+	{
+		someInt = 456;
+	}
+	public native void printMethod()
+	{
+	}
+	public void normalMethod()
+	{
+		Console.println(myStr);
+	}
+	public static void main(string[]args)
+	{
+		NativeTest nt = new NativeTest("Hello");
+		
+		nt.setInt();
+		nt.printMethod();
+		nt.normalMethod();
+	}
+}

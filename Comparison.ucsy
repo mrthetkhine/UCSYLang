@@ -1,0 +1,16 @@
+class Comparison
+{
+	public static void main(string[]args)	
+	{
+		int integerOne = 10 ,integerTwo = 20;
+		float floatOne = 3.4,floatTwo = 45.6;
+		double doubleOne = 200,doubleTwo = 39;	
+
+		Console.println( integerOne == integerOne );
+		Console.println( floatOne > integerOne );
+		Console.println( doubleOne >= floatTwo );
+		Console.println(true != false );
+		Console.println( doubleOne == 200 );
+		Console.println( doubleTwo < doubleOne );
+	}
+}

@@ -1,0 +1,46 @@
+class MyStack
+{
+	int[] arr;
+	int top;
+	
+	MyStack()
+	{
+		arr = new int[100];
+		top = -1;
+	}
+	public void push(int data)
+	{
+		top = top + 1;
+		arr [ top ] = data;
+	}
+	public int pop()
+	{
+		int index = top;
+		top = top -1;
+		return arr[ index ];
+	}
+
+}
+interface List
+{
+	void add(int a);
+	 int remove();
+}
+class ClassAdapter adapts List with Stack add(int a) to push(a), remove() to pop()
+{
+	ClassAdapter()
+	{
+	}
+	public static void main(string[]args)
+	{	
+		ClassAdapter c = new ClassAdapter();
+		c.add(10);
+		c.add(20);
+		c.add(30);
+	
+		Console.println(c.remove());
+		Console.println(c.remove());	
+		Console.println(c.remove());
+		
+	}
+}

@@ -1,0 +1,18 @@
+class Logical
+{
+	public static void main(string[]args)
+	{
+		Console.println("Operator and ");
+		Console.println( true and true);
+		Console.println( true and false);
+		Console.println( false and true);
+		Console.println(false and false);
+	
+		Console.println("Operator or");
+		Console.println( true or true );
+		Console.println( true or false );
+		Console.println( false or true);
+		Console.println(false or false);
+	
+	}
+}

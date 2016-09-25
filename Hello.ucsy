@@ -1,0 +1,87 @@
+abstract class MyParent
+{
+	protected void algorithm()
+	{
+		partOne();
+		partTwo();
+	}
+	protected abstract void partOne();
+	protected abstract void partTwo();
+}
+class Hello inherits MyParent
+{
+	public override void partOne()
+	{
+		Console.println("Part One of Algorithm");
+	}
+	public override void partTwo()
+	{
+		Console.println("Part Two of Algorithm");
+	}
+	public Hello()
+	{
+		//this();
+		//a = 9 +  4 * 3;
+	}
+	//functor void myFunctor();
+	/*
+	public void method()
+	{
+		//return method();
+	}
+	*/
+	int main()
+	{
+		return main() ;
+	}
+	static void method(long l,string msg)
+	{
+		Console.println("The value of long is ");
+		Console.println( msg );
+		Console.println(l);
+	}
+	long myLong;
+	public static void main(string[]args)
+	{
+		//ConsoleOutput.println("Hi how are you");
+		Hello h ;
+		long myLong = 334444L;
+		Console.println(myLong);
+		h= new Hello();
+		h.algorithm();
+		long l = 3L;
+		method( l,"Welcome to System Programming" );
+		method(l,"Who care this error");
+		int i;
+		i = 4950;
+		
+		Console.println( i );
+		
+		//long myLong;
+		myLong = 899999994L;
+		Console.println(myLong);
+		double d;
+		d = 3.4D;
+		Console.println( d );
+		float f;
+		f = 3.4566;
+		Console.println( f );
+		
+		boolean b;
+		b = true;
+		Console.println( b );
+		b = false;
+		Console.println( b );
+		char c ='H';
+		Console.print(c);
+		Console.print(" is a character ");
+	}
+}
+/*
+functor void f();
+interface MyInterface //conforms MyMeta
+{
+	void method();
+	//int method();
+} 
+*/

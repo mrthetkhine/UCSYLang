@@ -1,0 +1,10 @@
+class ExecuteDemo
+{
+	public static void main(string[]args)
+	{
+		execute 3 times
+		{
+			Console.println("Hello")
+		}
+	}
+}

@@ -1,0 +1,41 @@
+class NormalClass
+{
+	public NormalClass()
+	{
+	}
+	public rebindable void changeMethod()
+	{
+		Console.println("Original change Method");
+	}
+	void methodOne()
+	{
+		Console.println("Original Method");
+	}
+}
+free class MyFreeClass of NormalClass
+{
+	void methodOne()
+	{
+		Console.println("Implementation one");
+	}
+}
+free class FreeTwo of NormalClass
+{
+	void methodTwo()
+	{
+		Console.println("Implementation two");
+	}
+}
+class FreeClassDemo
+{
+	public static void main(string[]args)
+	{
+		NormalClass c = new NormalClass();
+		c.changeMethod();
+		rebind c.changeMethod with methodOne of MyFreeClass;
+		c.changeMethod();
+
+		NormalClass obj2 = new NormalClass();
+		obj2.changeMethod();
+	}
+}
