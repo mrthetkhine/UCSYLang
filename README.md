@@ -31,10 +31,13 @@ Parser Generator ကုိေတာ့ JavaCC ကိုသံုးတယ္။ 
 Compiler ကေန source file .ucsy ကုိလက္ခံၿပီးေတာ့ compile လုပ္ရင္ .ucode ဆုိတာထြက္ပါတယ္
 universal code ေပါ့ (ucsy )သံုးလို. တရားစြဲမယ္ဆုိတဲ့ သူကပါေသး(ထားပါေတာ့ေလ)
 
-Compile လုပ္ဖုိ.က
+Compile လုပ္ဖုိ.က 
 http://www.thetkhine.com/project/OOP5.rar
 
 ဒီအေပၚကလင့္ကိုေဒါင္းၿပီး rar ေၿဖလုိက္ပါ
+
+မဟုတ္ရင္ဒီ Github က code ေတြ download လုပ္လဲ ရပါတယ္။
+
 JRE ေတာ့လိုပါတယ္ OOP5 ဆုိတဲ့ folder ထဲမွာ IDE.bat ကို run လုိက္ရင္ IDE တက္လာပါလိမ့္မယ္
 အဲဒီမွာ File Open ကေန HelloWorld.ucsy ကုိဖြင့္လုိက္ပါ. Build menu ကေန Compile ဆုိရင္
 HelloWorld.ucode ဆုိတာထုတ္ေပးပါလိမ့္မယ္
