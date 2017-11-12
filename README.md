@@ -35,7 +35,7 @@ Compiler ကေန source file .ucsy ကုိလက္ခံၿပီးေတ�
 universal code ေပါ့ (ucsy )သံုးလို. တရားစြဲမယ္ဆုိတဲ့ သူကပါေသး(ထားပါေတာ့ေလ)
 
 Compile လုပ္ဖုိ.က 
-http://www.thetkhine.com/project/OOP5.rar
+http://www.mediafire.com/file/l8c9n83dd8388k8/OOP5.rar
 
 ဒီအေပၚကလင့္ကိုေဒါင္းၿပီး rar ေၿဖလုိက္ပါ
 
