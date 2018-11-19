@@ -90,7 +90,7 @@ Compiler ကေန source file .ucsy ကုိလက္ခံၿပီးေတ�
 universal code ေပါ့ (ucsy )သံုးလို. တရားစြဲမယ္ဆုိတဲ့ သူကပါေသး(ထားပါေတာ့ေလ)
 
 Compile လုပ္ဖုိ.က
-http://www.thetkhine.com/project/OOP5.rar
+https://www.dropbox.com/s/yvqmwnl4xsdjgxl/OOP5.rar?dl=0
 
 ဒီအေပၚကလင့္ကိုေဒါင္းၿပီး rar ေၿဖလုိက္ပါ
 JRE ေတာ့လိုပါတယ္ OOP5 ဆုိတဲ့ folder ထဲမွာ IDE.bat ကို run လုိက္ရင္ IDE တက္လာပါလိမ့္မယ္
